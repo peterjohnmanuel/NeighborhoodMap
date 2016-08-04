@@ -9,6 +9,7 @@
   "author": "Peter John Manuel",
   "license": "MIT",
   "devDependencies": {
+    "clean-bower-installer": "^0.3.4",
     "gulp": "^3.9.1"
   }
 }

@@ -13,5 +13,14 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "cInstall": {
+    "folder": {
+      "js": "js/",
+      "css": "css/",
+      "otf, eot, svg, ttf, woff": "fonts/"
+    },
+    "source": {
+    }
+  }
 }
