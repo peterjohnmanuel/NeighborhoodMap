@@ -1,26 +1,29 @@
 /** Gulp libraries */
 
 var gulp = require('gulp'),
-sass = require('gulp-sass'),
-livereload = require('gulp-livereload'),
-useref = require('gulp-useref')
-htmlmin = require('gulp-htmlmin');
+    sass = require('gulp-sass'),
+    livereload = require('gulp-livereload'),
+    useref = require('gulp-useref'),
+    htmlmin = require('gulp-htmlmin'),
+    gulpif = require('gulp-if'),
+    uglify = require('gulp-uglify'),
+    cleanCSS = require('gulp-clean-css');
 
 /** Configuration files */
 var config = {
     bootstrap: './bower_components/bootstrap-sass',
     fontawesome: './bower_components/font-awesome',
-    dist : './dist'
+    dist: './dist'
 }
 
 /** Gulp Tasks */
 
 /** Task to convert sass to css */
-gulp.task('css', function(){ 
+gulp.task('css', function () {
     gulp.src('./scss/*.scss')
-    .pipe(sass({ includePaths: [config.bootstrap + '/assets/stylesheets']}))
-    .pipe(gulp.dest('css'))
-    .pipe(livereload());   
+        .pipe(sass({ includePaths: [config.bootstrap + '/assets/stylesheets'] }))
+        .pipe(gulp.dest('css'))
+        .pipe(livereload());
 });
 
 
@@ -35,17 +38,19 @@ gulp.task('fonts', function () {
 });
 
 /** Task useref */
-gulp.task('useref', function(){
+gulp.task('useref', function () {
     gulp.src('./*.html')
-    .pipe(useref())
-    .pipe(gulp.dest('dist'))
+        .pipe(useref())
+        .pipe(gulpif('*.js', uglify()))
+        .pipe(gulpif('*.css', cleanCSS()))
+        .pipe(gulp.dest('dist'))
 });
 
 /** Html minify task */
-gulp.task('html-minify', function() {
-   gulp.src( config.dist + '/*.html')
-    .pipe(htmlmin({collapseWhitespace: true}))
-    .pipe(gulp.dest(config.dist + '/'));
+gulp.task('html-minify', function () {
+    gulp.src(config.dist + '/*.html')
+        .pipe(htmlmin({ collapseWhitespace: true }))
+        .pipe(gulp.dest(config.dist + '/'));
 });
 
 
@@ -54,9 +59,9 @@ gulp.task('watch', function () {
 
     var server = livereload.listen();
 
-    gulp.watch('./index.html', ['useref','html-minify']);
+    gulp.watch('./index.html', ['useref', 'html-minify']);
     gulp.watch('./css/**/*.scss', ['css']);
 });
 
 
-gulp.task('default', ['css', 'fonts', 'useref', 'html-minify']);
+gulp.task('default', ['css', 'fonts', 'useref']);
