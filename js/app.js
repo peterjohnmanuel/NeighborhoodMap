@@ -12,15 +12,18 @@ var map;
 
 /** Functions */
 
-$(function () {
-
     function initMap() {
 
-        map = new google.maps.Map( $('#map'), {
-            center: { lat: 40.7413549, lng: -73.9980244 },
-            zoom: 13
+        map = new google.maps.Map( document.getElementById('map'), {
+            center: { lat: -34.16149, lng: 18.4633561 },
+            zoom: 12
         });
 
     }
+
+
+$(function () {
+
+
 
 });
