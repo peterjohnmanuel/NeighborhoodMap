@@ -12,18 +12,28 @@ var map;
 
 /** Functions */
 
-    function initMap() {
+function initMap() {
 
-        map = new google.maps.Map( document.getElementById('map'), {
-            center: { lat: -34.16149, lng: 18.4633561 },
-            zoom: 12
-        });
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: -34.16149, lng: 18.4633561 },
+        zoom: 12
+    });
 
-    }
+}
 
 
 $(function () {
 
+    var body = $('body');
+    var navToggleBtn = $('.nav-toggle-btn');
+    var navbarTop = $('.navbar-top');
+
+    navToggleBtn.on('click', function (e) {
+
+        body.toggleClass('active-nav');
+        // navbarTop.toggleClass('');
+        e.preventDefault();
+    });
 
 
 });

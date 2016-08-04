@@ -6271,6 +6271,11 @@ button.close {
   -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1);
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1); }
 
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Open Sans, Arial, sans-serif; }
+
 html,
 body {
   font-family: Arial, sans-serif;
@@ -6280,3 +6285,54 @@ body {
 
 #map {
   height: 100%; }
+
+body {
+  font-family: Open Sans, Arial, sans-serif;
+  overflow-x: hidden;
+  transition: transform 0.4s ease; }
+
+.nav-side {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  bottom: 0;
+  width: 200px;
+  background-color: #00324c;
+  transform: translate3d(-200px, 0, 0);
+  transition: transform 0.4s ease;
+  overflow-x: hidden; }
+  .nav-side .nav-side-brand {
+    background: #00547f;
+    color: #ffffff;
+    margin-top: 0px;
+    width: 200px;
+    margin-bottom: 20px; }
+  .nav-side .nav-side-ul {
+    list-style: none;
+    margin-top: 60px; }
+    .nav-side .nav-side-ul li {
+      padding-left: 10px;
+      font-size: 18px; }
+      .nav-side .nav-side-ul li a {
+        text-decoration: none;
+        display: block;
+        text-align: left;
+        color: #ffffff;
+        padding: 10px 0; }
+      .nav-side .nav-side-ul li i {
+        padding-right: 15px; }
+    .nav-side .nav-side-ul li:hover {
+      background-color: #004466; }
+
+.active-nav .nav-side {
+  transform: translate3d(0, 0, 0); }
+
+.content > * {
+  text-align: center;
+  transition: transform 0.4s ease; }
+
+.active-nav .content {
+  transform: translate3d(200px, 0, 0); }
+
+.wrapper {
+  margin-top: 100px; }

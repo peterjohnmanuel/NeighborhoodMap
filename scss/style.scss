@@ -1,5 +1,17 @@
+$nav-bar-background-color: #00324c;
+$nav-bar-background-color-hover: #004466;
+$nav-bar-text-color : #ffffff;
+$nav-bar-width : 200px;
+
 @import "bootstrap";
 @import "bootstrap/theme";
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Open Sans, Arial, sans-serif;
+}
+
 
 html,
 body {
@@ -12,4 +24,90 @@ body {
 
 #map {
     height: 100%;
+}
+
+body {
+    font-family: Open Sans, Arial, sans-serif;
+    overflow-x: hidden;
+    transition: transform 0.4s ease;
+}
+
+.nav-side {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    bottom: 0;
+    width: 200px;
+    background-color: $nav-bar-background-color;
+    transform: translate3d(-200px, 0, 0);
+    transition: transform 0.4s ease;
+    overflow-x: hidden;
+
+    .nav-side-brand{
+        background: #00547f;
+        color: #ffffff;
+        margin-top: 0px;
+        width: $nav-bar-width;
+        margin-bottom: 20px;
+    }
+
+    .nav-side-ul {
+        list-style: none;       
+	    margin-top: 60px;
+
+        li {
+            padding-left: 10px;
+            font-size: 18px;
+            a {
+                text-decoration: none;
+                display: block;
+                text-align: left;
+                color: $nav-bar-text-color;
+                padding: 10px 0;        
+            }
+
+            i{
+                padding-right: 15px;
+            }
+        }
+
+        li:hover {
+            background-color: $nav-bar-background-color-hover;
+        }
+
+
+    }
+}
+
+.active-nav .nav-side  {
+    transform: translate3d(0, 0, 0);
+}
+
+// nav {
+//     transform: translate3d(200px, 0, 0);
+// }
+
+//.nav-toggle-btn {
+    //display: block;
+    //position: absolute;
+    //left: 200px;
+    //width: 40px;
+    //height: 40px;
+    // background-color: $nav-bar-background-color;
+    // color: $nav-bar-text-color;
+    // text-align: center;
+    // padding-top: 5px;
+//}
+
+.content > * {    
+    text-align: center;
+    transition: transform 0.4s ease;
+}
+
+.active-nav .content {
+    transform: translate3d(200px, 0, 0);
+}
+
+.wrapper{
+    margin-top: 100px;
 }

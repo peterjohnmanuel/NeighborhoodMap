@@ -7,7 +7,8 @@ var gulp = require('gulp'),
     htmlmin = require('gulp-htmlmin'),
     gulpif = require('gulp-if'),
     uglify = require('gulp-uglify'),
-    cleanCSS = require('gulp-clean-css');
+    cleanCSS = require('gulp-clean-css'),
+    fontmin = require('gulp-fontmin');
 
 /** Configuration files */
 var config = {
@@ -30,11 +31,15 @@ gulp.task('css', function () {
 /** Task to install fonts in directories */
 gulp.task('fonts', function () {
     gulp.src(config.bootstrap + '/assets/fonts/**/*')
+        .pipe(fontmin())
         .pipe(gulp.dest('fonts'))
+        .pipe(gulp.dest(config.dist + '/fonts'))
         .pipe(livereload()),
         gulp.src(config.fontawesome + '/fonts/**/*')
+            .pipe(fontmin())
             .pipe(gulp.dest('fonts'))
-            .pipe(livereload())
+            .pipe(gulp.dest(config.dist + '/fonts'))
+            .pipe(livereload());
 });
 
 /** Task useref */
@@ -59,10 +64,13 @@ gulp.task('watch', function () {
 
     var server = livereload.listen();
 
-    gulp.watch('./index.html', ['useref', 'html-minify']);
-    gulp.watch('./css/**/*.scss', ['css', 'useref']);
-    gulp.watch('./*js', ['useref']);
+    gulp.watch('*.html', ['useref', 'html-minify']);
+    gulp.watch('./scss/**/*.scss', ['css', 'useref']);
+    gulp.watch('./js/*.js', ['useref']);
+    gulp.watch('./fonts/*.*', ['fonts']);
 });
+
+
 
 
 gulp.task('default', ['css', 'fonts', 'useref']);
