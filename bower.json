@@ -21,12 +21,16 @@
       "otf, eot, svg, ttf, woff": "fonts/"
     },
     "source": {
-      "bootstrap-sass" : {
-        "boostrap.mins.js": "assets/javascripts/bootstrap.min.js"
+      "bootstrap-sass": {
+        "boostrap.min.js": "assets/javascripts/bootstrap.min.js"
+      },
+      "font-awesome": {
+        "font-awesome.min.css": "css/font-awesome.min.css"
       }
     }
   },
   "devDependencies": {
-    "bootstrap-sass": "^3.3.7"
+    "bootstrap-sass": "^3.3.7",
+    "font-awesome": "^4.6.3"
   }
 }

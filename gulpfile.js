@@ -5,7 +5,8 @@ sass = require('gulp-sass');
 
 /** Configuration files */
 var config = {
-    bootstrap : './bower_components/bootstrap-sass'
+    bootstrap : './bower_components/bootstrap-sass',
+    fontawesome : './bower_components/font-awesome'
 }
 
 /** Gulp Tasks */
@@ -17,4 +18,13 @@ gulp.task('css', function(){
     .pipe(gulp.dest('css'));   
 });
 
-gulp.task('default', ['css']);
+
+/** Task to install fonts in directories */
+gulp.task('fonts', function () {
+    gulp.src(config.bootstrap + '/assets/fonts/**/*')
+        .pipe(gulp.dest('fonts')),
+        gulp.src(config.fontawesome + '/fonts/**/*')
+            .pipe(gulp.dest('fonts'))
+});
+
+gulp.task('default', ['css', 'fonts']);
