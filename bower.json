@@ -21,6 +21,12 @@
       "otf, eot, svg, ttf, woff": "fonts/"
     },
     "source": {
+      "bootstrap-sass" : {
+        "boostrap.mins.js": "assets/javascripts/bootstrap.min.js"
+      }
     }
+  },
+  "devDependencies": {
+    "bootstrap-sass": "^3.3.7"
   }
 }
