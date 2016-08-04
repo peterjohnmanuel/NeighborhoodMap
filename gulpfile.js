@@ -60,7 +60,8 @@ gulp.task('watch', function () {
     var server = livereload.listen();
 
     gulp.watch('./index.html', ['useref', 'html-minify']);
-    gulp.watch('./css/**/*.scss', ['css']);
+    gulp.watch('./css/**/*.scss', ['css', 'useref']);
+    gulp.watch('./*js', ['useref']);
 });
 
 
