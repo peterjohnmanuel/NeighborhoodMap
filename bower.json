@@ -22,7 +22,7 @@
     },
     "source": {
       "bootstrap-sass": {
-        "boostrap.min.js": "assets/javascripts/bootstrap.min.js"
+        "bootstrap.min.js": "assets/javascripts/bootstrap.min.js"
       },
       "font-awesome": {
         "font-awesome.min.css": "css/font-awesome.min.css"

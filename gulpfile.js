@@ -2,12 +2,13 @@
 
 var gulp = require('gulp'),
 sass = require('gulp-sass'),
-livereload = require('gulp-livereload');
+livereload = require('gulp-livereload'),
+useref = require('gulp-useref');
 
 /** Configuration files */
 var config = {
-    bootstrap : './bower_components/bootstrap-sass',
-    fontawesome : './bower_components/font-awesome'
+    bootstrap: './bower_components/bootstrap-sass',
+    fontawesome: './bower_components/font-awesome'
 }
 
 /** Gulp Tasks */
@@ -28,16 +29,25 @@ gulp.task('fonts', function () {
         .pipe(livereload()),
         gulp.src(config.fontawesome + '/fonts/**/*')
             .pipe(gulp.dest('fonts'))
-            .pipe(livereload)
+            .pipe(livereload())
 });
 
+/** Task useref */
+gulp.task('useref', function(){
+    gulp.src('./*.html')
+    .pipe(useref())
+    .pipe(gulp.dest('dist'))
+});
+
+
+/** Task Watch relevant folders */
 gulp.task('watch', function () {
 
     var server = livereload.listen();
 
-    gulp.watch('./index.html');
+    gulp.watch('./index.html', ['useref']);
     gulp.watch('./css/**/*.scss', ['css']);
 });
 
 
-gulp.task('default', ['css', 'fonts']);
+gulp.task('default', ['css', 'fonts', 'useref']);
