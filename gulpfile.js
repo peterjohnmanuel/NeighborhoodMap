@@ -1,7 +1,8 @@
 /** Gulp libraries */
 
 var gulp = require('gulp'),
-sass = require('gulp-sass');
+sass = require('gulp-sass'),
+livereload = require('gulp-livereload');
 
 /** Configuration files */
 var config = {
@@ -15,16 +16,28 @@ var config = {
 gulp.task('css', function(){ 
     gulp.src('./scss/*.scss')
     .pipe(sass({ includePaths: [config.bootstrap + '/assets/stylesheets']}))
-    .pipe(gulp.dest('css'));   
+    .pipe(gulp.dest('css'))
+    .pipe(livereload());   
 });
 
 
 /** Task to install fonts in directories */
 gulp.task('fonts', function () {
     gulp.src(config.bootstrap + '/assets/fonts/**/*')
-        .pipe(gulp.dest('fonts')),
+        .pipe(gulp.dest('fonts'))
+        .pipe(livereload()),
         gulp.src(config.fontawesome + '/fonts/**/*')
             .pipe(gulp.dest('fonts'))
+            .pipe(livereload)
 });
+
+gulp.task('watch', function () {
+
+    var server = livereload.listen();
+
+    gulp.watch('./index.html');
+    gulp.watch('./css/**/*.scss', ['css']);
+});
+
 
 gulp.task('default', ['css', 'fonts']);
