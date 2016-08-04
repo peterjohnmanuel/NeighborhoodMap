@@ -1,0 +1,17 @@
+{
+  "name": "neighborhoodmap",
+  "description": "Map of neighborhood.",
+  "main": "index.html",
+  "authors": [
+    "Peter John Manuel"
+  ],
+  "license": "MIT",
+  "homepage": "index.html",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
