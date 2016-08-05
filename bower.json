@@ -29,12 +29,16 @@
       },
       "jquery": {
         "jquery.min.js": "dist/jquery.min.js"
+      },
+      "knockout" : {
+        "knockout.min.js": "dist/knockout.js"
       }
     }
   },
   "devDependencies": {
     "bootstrap-sass": "^3.3.7",
     "font-awesome": "^4.6.3",
-    "jQuery": "^3.1.0"
+    "jQuery": "^3.1.0",
+    "knockout": "knockoutjs#^3.4.0"
   }
 }
