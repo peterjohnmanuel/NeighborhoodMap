@@ -65,7 +65,7 @@ gulp.task('watch', function () {
     var server = livereload.listen();
 
     gulp.watch('*.html', ['useref', 'html-minify']);
-    gulp.watch('./scss/**/*.scss', ['css', 'useref']);
+    gulp.watch('./scss/*.scss', ['css', 'useref']);
     gulp.watch('./js/*.js', ['useref']);
     gulp.watch('./fonts/*.*', ['fonts']);
 });
@@ -73,4 +73,4 @@ gulp.task('watch', function () {
 
 
 
-gulp.task('default', ['css', 'fonts', 'useref']);
+gulp.task('default', ['css', 'fonts', 'useref', 'html-minify']);

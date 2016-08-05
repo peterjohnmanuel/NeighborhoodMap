@@ -1,7 +1,7 @@
 $nav-bar-background-color: #00324c;
 $nav-bar-background-color-hover: #004466;
 $nav-bar-text-color : #ffffff;
-$nav-bar-width : 200px;
+$nav-bar-width : 250px;
 
 @import "bootstrap";
 @import "bootstrap/theme";
@@ -37,9 +37,9 @@ body {
     z-index: 1000;
     top: 0;
     bottom: 0;
-    width: 200px;
+    width: $nav-bar-width;
     background-color: $nav-bar-background-color;
-    transform: translate3d(-200px, 0, 0);
+    transform: translate3d(-$nav-bar-width, 0, 0);
     transition: transform 0.4s ease;
     overflow-x: hidden;
 
@@ -105,7 +105,7 @@ body {
 }
 
 .active-nav .content {
-    transform: translate3d(200px, 0, 0);
+    transform: translate3d($nav-bar-width, 0, 0);
 }
 
 .wrapper{

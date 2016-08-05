@@ -6296,16 +6296,16 @@ body {
   z-index: 1000;
   top: 0;
   bottom: 0;
-  width: 200px;
+  width: 250px;
   background-color: #00324c;
-  transform: translate3d(-200px, 0, 0);
+  transform: translate3d(-250px, 0, 0);
   transition: transform 0.4s ease;
   overflow-x: hidden; }
   .nav-side .nav-side-brand {
     background: #00547f;
     color: #ffffff;
     margin-top: 0px;
-    width: 200px;
+    width: 250px;
     margin-bottom: 20px; }
   .nav-side .nav-side-ul {
     list-style: none;
@@ -6332,7 +6332,7 @@ body {
   transition: transform 0.4s ease; }
 
 .active-nav .content {
-  transform: translate3d(200px, 0, 0); }
+  transform: translate3d(250px, 0, 0); }
 
 .wrapper {
   margin-top: 100px; }
