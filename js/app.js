@@ -9,14 +9,16 @@
 
 /** Global Variables */
 var map;
+var markers = [];
+
 
 /** Functions */
 
 function initMap() {
 
     map = new google.maps.Map(document.getElementById('map'), {
-        center: { lat: -34.16149, lng: 18.4633561 },
-        zoom: 12,
+        center: { lat: -34.2002806, lng: 18.3726442 },
+        zoom: 13,
         mapTypeControl: false
     });
 
