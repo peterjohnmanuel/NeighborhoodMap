@@ -15,7 +15,7 @@ var config = {
     bootstrap: './bower_components/bootstrap-sass',
     fontawesome: './bower_components/font-awesome',
     dist: './dist'
-}
+};
 
 /** Gulp Tasks */
 
@@ -44,18 +44,20 @@ gulp.task('fonts', function () {
 
 /** Task useref */
 gulp.task('useref', function () {
-    gulp.src('./*.html')
+    gulp.src('*.html')
         .pipe(useref())
         .pipe(gulpif('*.js', uglify()))
         .pipe(gulpif('*.css', cleanCSS()))
         .pipe(gulp.dest('dist'))
+        .pipe(livereload());
 });
 
 /** Html minify task */
 gulp.task('html-minify', function () {
     gulp.src(config.dist + '/*.html')
         .pipe(htmlmin({ collapseWhitespace: true }))
-        .pipe(gulp.dest(config.dist + '/'));
+        .pipe(gulp.dest(config.dist + '/'))
+        .pipe(livereload());
 });
 
 
@@ -64,9 +66,9 @@ gulp.task('watch', function () {
 
     var server = livereload.listen();
 
-    gulp.watch('*.html', ['useref', 'html-minify']);
-    gulp.watch('./scss/*.scss', ['css', 'useref']);
-    gulp.watch('./js/*.js', ['useref']);
+    gulp.watch('*.html', ['html-minify']);
+    gulp.watch('./scss/*.scss', ['css', 'useref','html-minify']);
+    gulp.watch('./js/*.js', ['useref', 'html-minify']);
     gulp.watch('./fonts/*.*', ['fonts']);
 });
 
