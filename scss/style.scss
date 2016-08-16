@@ -52,10 +52,11 @@ body {
     }
 
     .nav-side-ul {
-        list-style: none;       
+        list-style: none;
+        margin-top: 22px;        
 	
         li {
-            padding-left: 10px;
+            
             font-size: 16px;
             color: $nav-bar-text-color;
             a {
@@ -98,6 +99,12 @@ body {
     color: $nav-bar-text-color;
     text-align: center;
     padding-top: 15px;
+    border: 0px;
+}
+
+.nav-toggle-btn:hover{
+    background-color: $nav-bar-text-color;
+    color: $nav-bar-background-color;
 }
 
 .content > * {    

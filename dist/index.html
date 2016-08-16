@@ -12,7 +12,7 @@
 <body>
 
     <nav class="navbar-fixed-top navbar navbar-light bg-faded navbar-top content">
-        <a href="#" class="navbar-brand nav-toggle-btn"><i class="fa fa-bars fa"></i></a>
+        <button type="button" class="navbar-brand nav-toggle-btn"><i class="fa fa-bars fa"></i></button>        
     </nav>
 
 
@@ -23,7 +23,8 @@
         <section class="container-fluid">
 
             <div class="btn-group">
-                <button type="button" class="btn btn-primary"><i class="fa fa-map-marker"></i></button>
+                <button type="button" class="btn btn-primary" data-bind="click: showPlaces"><i class="fa fa-map-marker"></i></button>
+                <button type="button" class="btn btn-danger" data-bind="click: hidePlaces"><i class="fa fa-map-marker"></i></button>
             </div>
 
             <hr>

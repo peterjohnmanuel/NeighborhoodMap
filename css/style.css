@@ -6308,9 +6308,9 @@ body {
     width: 300px;
     margin-bottom: 20px; }
   .nav-side .nav-side-ul {
-    list-style: none; }
+    list-style: none;
+    margin-top: 22px; }
     .nav-side .nav-side-ul li {
-      padding-left: 10px;
       font-size: 16px;
       color: #ffffff; }
       .nav-side .nav-side-ul li a {
@@ -6340,7 +6340,12 @@ nav {
   background-color: #00324c;
   color: #ffffff;
   text-align: center;
-  padding-top: 15px; }
+  padding-top: 15px;
+  border: 0px; }
+
+.nav-toggle-btn:hover {
+  background-color: #ffffff;
+  color: #00324c; }
 
 .content > * {
   text-align: center;
