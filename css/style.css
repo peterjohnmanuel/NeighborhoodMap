@@ -6296,16 +6296,16 @@ body {
   z-index: 1000;
   top: 0;
   bottom: 0;
-  width: 250px;
+  width: 300px;
   background-color: #00324c;
-  transform: translate3d(-250px, 0, 0);
+  transform: translate3d(-300px, 0, 0);
   transition: transform 0.4s ease;
   overflow-x: hidden; }
   .nav-side .nav-side-brand {
     background: #00547f;
     color: #ffffff;
     margin-top: 0px;
-    width: 250px;
+    width: 300px;
     margin-bottom: 20px; }
   .nav-side .nav-side-ul {
     list-style: none;
@@ -6325,14 +6325,29 @@ body {
       background-color: #004466; }
 
 .active-nav .nav-side {
-  transform: translate3d(0, 0, 0); }
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.4s ease; }
+
+nav {
+  transform: translate3d(0px, 0, 0);
+  transition: transform 0.4s ease; }
+
+.nav-toggle-btn {
+  display: block;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-color: #00324c;
+  color: #ffffff;
+  text-align: center;
+  padding-top: 15px; }
 
 .content > * {
   text-align: center;
   transition: transform 0.4s ease; }
 
 .active-nav .content {
-  transform: translate3d(250px, 0, 0); }
+  transform: translate3d(300px, 0, 0); }
 
 .wrapper {
   margin-top: 100px; }
