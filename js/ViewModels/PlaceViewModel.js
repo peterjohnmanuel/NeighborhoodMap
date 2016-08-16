@@ -17,24 +17,26 @@ function PlaceViewModel() {
 
     self.showPlaces = function () {
 
-        console.log("here");
+        
 
-        // var bounds = new google.maps.LatLngBounds();
+        var bounds = new google.maps.LatLngBounds();
 
         // /** Extends the boundaries of the map for each marker and display the marker */
-        // for(var i = 0; i < self.places.length; i++){
-        //     self.places[i].setMap(map);
-        //     bounds.extend(self.places[i].position);
-        // }
-        // map.fitBounds(bounds);
+        for(var i = 0; i < self.places.length; i++){
+            self.places[i].setMap(map);
+            bounds.extend(self.places[i].position);
+        }
+        map.fitBounds(bounds);
+
+        console.log("Show places has been clicked");
 
     };
 
     /**Hide places */
     self.hidePlaces = function () {
-        // self.places.forEach(function(place) {
-        //    place.setMap(null); 
-        // });
+        self.places.forEach(function(place) {
+           place.setMap(null); 
+        });
         console.log("Hide places was clicked");
     };
 

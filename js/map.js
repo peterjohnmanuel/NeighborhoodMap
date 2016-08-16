@@ -11,10 +11,6 @@
 var map;
 var markers = [];
 
-
-
-
-
 /** Functions */
 
 
@@ -23,8 +19,6 @@ var markers = [];
  * @func initMap
  */
 function initMap() {
-
-    
 
     map = new google.maps.Map(document.getElementById('map'), {
         center: { lat: -34.2002806, lng: 18.3726442 },
