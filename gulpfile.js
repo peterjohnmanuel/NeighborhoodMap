@@ -54,7 +54,7 @@ gulp.task('useref', function () {
 
 /** Html minify task */
 gulp.task('html-minify', function () {
-    gulp.src(config.dist + '/*.html')
+    gulp.src('config.dist + *.html')
         .pipe(htmlmin({ collapseWhitespace: true }))
         .pipe(gulp.dest(config.dist + '/'))
         .pipe(livereload());
@@ -66,7 +66,7 @@ gulp.task('watch', function () {
 
     var server = livereload.listen();
 
-    gulp.watch('*.html', ['html-minify']);
+    gulp.watch('*.html', ['useref','html-minify']);
     gulp.watch('./scss/*.scss', ['css', 'useref','html-minify']);
     gulp.watch('./js/*.js', ['useref', 'html-minify']);
     gulp.watch('./fonts/*.*', ['fonts']);

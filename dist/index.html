@@ -1,1 +1,49 @@
-<!DOCTYPE html><html lang="en"><head><title></title><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="css/app.min.css"></head><body><nav class="navbar-fixed-top navbar navbar-light bg-faded navbar-top content"><a href="#" class="navbar-brand nav-toggle-btn"><i class="fa fa-bars fa"></i></a></nav><nav class="nav-side"><h5 class="navbar-brand nav-side-brand">Neighborhood Map</h5><section class="container-fluid"><div class="btn-group"><button type="button" class="btn btn-primary"><i class="fa fa-map-marker"></i></button></div><hr><input type="text" name="txtSearchPlaces" placeholder="Search Places" class="form-control"><ul class="nav-side-ul" data-bind="foreach: places"><li data-bind="text: title"><a href="#"></a></li></ul></section></nav><div id="map"></div></body>1234<script src="js/app.min.js"></script><script async defer="defer" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNxaV2Rfymk3kfsdWeU_ZK0VWg_-c5ZTg&v=3&callback=initMap"></script></html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/app.min.css">
+
+</head>
+
+<body>
+
+    <nav class="navbar-fixed-top navbar navbar-light bg-faded navbar-top content">
+        <a href="#" class="navbar-brand nav-toggle-btn"><i class="fa fa-bars fa"></i></a>
+    </nav>
+
+
+
+    <nav class="nav-side">
+        <h5 class="navbar-brand nav-side-brand">Neighborhood Map</h5>
+
+        <section class="container-fluid">
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary"><i class="fa fa-map-marker"></i></button>
+            </div>
+
+            <hr>
+            <input type="text" name="txtSearchPlaces" placeholder="Search Places" class="form-control">
+
+            <ul class="nav-side-ul" data-bind="foreach: places">
+                <li data-bind="text: title">
+                    <a href="#"></a>
+                </li>
+            </ul>
+        </section>
+    </nav>
+
+    <div id="map">
+    </div>
+
+</body>
+
+<script src="js/app.min.js"></script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNxaV2Rfymk3kfsdWeU_ZK0VWg_-c5ZTg&v=3&callback=initMap"></script>
+
+</html>
