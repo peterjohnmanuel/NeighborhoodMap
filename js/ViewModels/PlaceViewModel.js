@@ -2,19 +2,20 @@
 /** @func PlaceViewModel 
  * View model for Place functionality
 */
-function PlaceViewModel(){
+function PlaceViewModel() {
 
     var self = this;
 
-    self.places = ko.observableArray([
-        new Place('Park Ave Penthouse',  40.7713024,  -73.9632393),
-        new Place('Chelsea Loft',  40.7444833, -73.9949465),
-        new Place('East Village Hip Studio',  40.7281777, -73.984377),
-        new Place('TriBeCa Artsy Bachelor Pad', 40.7195264, -74.0089934),
-        new Place('Chinatown Homey Space', 40.7180628,  -73.9961237),
-    ]);
+    self.places = ko.observableArray();
 
-    self.showPlaces = function() {
+    self.initPlaces = function () {
+        self.places.push(new Place('Scarborough Beach', -34.2002806, 18.3726442));
+        self.places.push(new Place('Cape Point Lighthouse', -34.352502, 18.496412));
+        self.places.push(new Place('Boulders Beach', -34.197637, 18.452005));
+        self.places.push(new Place('Easy Tiger', -34.1080101, 18.4702441));
+    }
+
+    self.showPlaces = function () {
 
         console.log("here");
 
@@ -30,17 +31,15 @@ function PlaceViewModel(){
     };
 
     /**Hide places */
-    self.hidePlaces = function() {  
+    self.hidePlaces = function () {
         // self.places.forEach(function(place) {
         //    place.setMap(null); 
         // });
         console.log("Hide places was clicked");
-    }; 
+    };
 
-    self.searchPlaces = function(value) {
+    self.searchPlaces = function (value) {
 
-    }; 
+    };
 
 }
-
-var test = ko.applyBindings(new PlaceViewModel());
