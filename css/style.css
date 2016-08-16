@@ -6312,7 +6312,8 @@ body {
     margin-top: 60px; }
     .nav-side .nav-side-ul li {
       padding-left: 10px;
-      font-size: 18px; }
+      font-size: 16px;
+      color: #ffffff; }
       .nav-side .nav-side-ul li a {
         text-decoration: none;
         display: block;
