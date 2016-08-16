@@ -22,9 +22,9 @@ function PlaceViewModel() {
         var bounds = new google.maps.LatLngBounds();
 
         // /** Extends the boundaries of the map for each marker and display the marker */
-        for(var i = 0; i < self.places.length; i++){
-            self.places[i].setMap(map);
-            bounds.extend(self.places[i].position);
+        for(var i = 0; i < markers.length; i++){
+            markers[i].setMap(map);
+            bounds.extend(markers[i].position);
         }
         map.fitBounds(bounds);
 
@@ -34,7 +34,7 @@ function PlaceViewModel() {
 
     /**Hide places */
     self.hidePlaces = function () {
-        self.places.forEach(function(place) {
+        markers.forEach(function(place) {
            place.setMap(null); 
         });
         console.log("Hide places was clicked");

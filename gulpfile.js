@@ -46,7 +46,7 @@ gulp.task('fonts', function () {
 gulp.task('useref', function () {
     gulp.src('*.html')
         .pipe(useref())
-        .pipe(gulpif('*.js', uglify()))
+        .pipe(gulpif('**/*.js', uglify()))
         .pipe(gulpif('*.css', cleanCSS()))
         .pipe(gulp.dest('dist'))
         .pipe(livereload());
@@ -68,7 +68,7 @@ gulp.task('watch', function () {
 
     gulp.watch('*.html', ['useref','html-minify']);
     gulp.watch('./scss/*.scss', ['css', 'useref','html-minify']);
-    gulp.watch('./js/*.js', ['useref', 'html-minify']);
+    gulp.watch('./js/**/*.js', ['useref', 'html-minify']);
     gulp.watch('./fonts/*.*', ['fonts']);
 });
 
