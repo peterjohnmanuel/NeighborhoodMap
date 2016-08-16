@@ -24,8 +24,7 @@ var markers = [];
  */
 function initMap() {
 
-    ko.applyBindings(displayedPlaces);
-    displayedPlaces.initPlaces();
+    
 
     map = new google.maps.Map(document.getElementById('map'), {
         center: { lat: -34.2002806, lng: 18.3726442 },
