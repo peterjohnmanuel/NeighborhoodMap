@@ -13,7 +13,7 @@ function PlaceViewModel() {
         self.places.push(new Place('Cape Point Lighthouse', -34.352502, 18.496412));
         self.places.push(new Place('Boulders Beach', -34.197637, 18.452005));
         self.places.push(new Place('Easy Tiger', -34.1080101, 18.4702441));
-    }
+    };
 
     self.showPlaces = function () {
 
@@ -40,6 +40,9 @@ function PlaceViewModel() {
         console.log("Hide places was clicked");
     };
 
+    /**
+     * Search Places
+     */
     self.searchPlaces = function (value) {
 
     };

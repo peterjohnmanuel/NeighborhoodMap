@@ -6,8 +6,6 @@
  * Description : Methods for google maps api.
  */
 
-
-
 var map;
 var markers = [];
 

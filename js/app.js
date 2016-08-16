@@ -19,6 +19,7 @@ $(function () {
     var navToggleBtn = $('.nav-toggle-btn');
     var navbarTop = $('.navbar-top');
 
+    /** Expand side bar when toggled. */
     navToggleBtn.on('click', function (e) {
         body.toggleClass('active-nav');
     });
