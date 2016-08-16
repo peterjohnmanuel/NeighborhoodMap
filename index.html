@@ -22,11 +22,22 @@
 
     <nav class="nav-side">
         <h5 class="navbar-brand nav-side-brand">Neighborhood Map</h5>
-        <ul class="nav-side-ul" data-bind="foreach: places">
-            <li data-bind="text: title">
-                <a href="#"></a>
-            </li>
-        </ul>
+
+        <section class="container-fluid">
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary"><i class="fa fa-map-marker"></i></button>
+            </div>
+
+            <hr>
+            <input type="text" name="txtSearchPlaces" placeholder="Search Places" class="form-control">
+
+            <ul class="nav-side-ul" data-bind="foreach: places">
+                <li data-bind="text: title">
+                    <a href="#"></a>
+                </li>
+            </ul>
+        </section>
     </nav>
 
     <div id="map">
