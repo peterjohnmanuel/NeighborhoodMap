@@ -15,11 +15,10 @@ function PlaceViewModel() {
         self.places.push(new Place('Easy Tiger', -34.1080101, 18.4702441));
         self.places.push(new Place('Kalky Fish & Chips', -34.130658, 18.450053));
 
+        self.sortPlacesByName();
     };
 
     self.showPlaces = function () {
-
-
 
         var bounds = new google.maps.LatLngBounds();
 
@@ -48,5 +47,15 @@ function PlaceViewModel() {
     self.searchPlaces = function (value) {
 
     };
+
+    /**
+     * Sort Places
+     * @func sortPlacesByName
+     */
+    self.sortPlacesByName = function () {
+        self.places(self.places().sort(function (a, b) {
+            return a.title == b.title ? 0 : (a.title < b.title ? -1 : 1)
+        }));
+    }
 
 }
