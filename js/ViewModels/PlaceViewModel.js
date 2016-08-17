@@ -13,16 +13,18 @@ function PlaceViewModel() {
         self.places.push(new Place('Cape Point Lighthouse', -34.352502, 18.496412));
         self.places.push(new Place('Boulders Beach', -34.197637, 18.452005));
         self.places.push(new Place('Easy Tiger', -34.1080101, 18.4702441));
+        self.places.push(new Place('Kalky Fish & Chips', -34.130658, 18.450053));
+
     };
 
     self.showPlaces = function () {
 
-        
+
 
         var bounds = new google.maps.LatLngBounds();
 
         // /** Extends the boundaries of the map for each marker and display the marker */
-        for(var i = 0; i < markers.length; i++){
+        for (var i = 0; i < markers.length; i++) {
             markers[i].setMap(map);
             bounds.extend(markers[i].position);
         }
@@ -34,8 +36,8 @@ function PlaceViewModel() {
 
     /**Hide places */
     self.hidePlaces = function () {
-        markers.forEach(function(place) {
-           place.setMap(null); 
+        markers.forEach(function (place) {
+            place.setMap(null);
         });
         console.log("Hide places was clicked");
     };
