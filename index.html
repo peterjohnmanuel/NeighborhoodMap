@@ -15,7 +15,7 @@
 <body>
 
     <nav class="navbar-fixed-top navbar navbar-light bg-faded navbar-top content">
-        <button type="button" class="navbar-brand nav-toggle-btn"><i class="fa fa-bars fa"></i></button>        
+        <button type="button" class="navbar-brand nav-toggle-btn"><i class="fa fa-bars fa"></i></button>
     </nav>
 
 
@@ -32,7 +32,14 @@
             </div>
 
             <hr>
-            <input type="text" name="txtSearchPlaces" placeholder="Search Places" class="form-control">
+
+            <div class="input-group">
+
+                <input type="text" name="txtSearchPlaces" class="form-control" placeholder="Search Places">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary input-search" type="button"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
 
             <ul class="nav-side-ul" data-bind="foreach: places">
                 <li data-bind="text: title">
