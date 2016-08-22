@@ -7,6 +7,7 @@ function PlaceViewModel() {
     var self = this;
 
     self.places = ko.observableArray();
+    markers = ko.observableArray();
 
     self.initPlaces = function () {
         self.places.push(new Place('Scarborough Beach', -34.2002806, 18.3726442));
@@ -17,6 +18,42 @@ function PlaceViewModel() {
 
         self.sortPlacesByName();
     };
+
+    self.InitializeMarkers = function () {
+
+        /** Creating a info windows */
+        var largerInfowindow = new google.maps.InfoWindow();
+        var bounds = new google.maps.LatLngBounds();
+
+
+        /**The following group uses the location array to create an array of markers on initialize.*/
+        self.places().forEach(function (place){
+
+
+            /**Create a marker per location, and put into markers array */
+            var marker = new google.maps.Marker({
+                map: map,
+                position: place.location,
+                title: place.title,
+                animation: google.maps.Animation.DROP,
+                //id: i
+            });
+
+            /** Push the marker to our array of markers */
+            markers.push(marker);
+
+            // /** Create an onclick event to open an infowindow at each marker */
+            // marker.addListener('click', function () {
+            //     populateInfoWindow(this, largerInfowindow);
+            // });
+
+            // /** Extend the boundaries of the map for each marker */
+             bounds.extend(marker.position);
+
+             map.fitBounds(bounds);
+        });
+
+    }
 
     self.showPlaces = function () {
 
@@ -57,5 +94,6 @@ function PlaceViewModel() {
             return a.title == b.title ? 0 : (a.title < b.title ? -1 : 1)
         }));
     }
+
 
 }
