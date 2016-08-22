@@ -27,7 +27,7 @@ function PlaceViewModel() {
 
 
         /**The following group uses the location array to create an array of markers on initialize.*/
-        self.places().forEach(function (place){
+        self.places().forEach(function (place) {
 
 
             /**Create a marker per location, and put into markers array */
@@ -43,14 +43,14 @@ function PlaceViewModel() {
             markers.push(marker);
 
             // /** Create an onclick event to open an infowindow at each marker */
-            // marker.addListener('click', function () {
-            //     populateInfoWindow(this, largerInfowindow);
-            // });
+            marker.addListener('click', function () {
+                self.populateInfoWindow(this, largerInfowindow);
+            });
 
             // /** Extend the boundaries of the map for each marker */
-             bounds.extend(marker.position);
+            bounds.extend(marker.position);
 
-             map.fitBounds(bounds);
+            map.fitBounds(bounds);
         });
 
     }
@@ -93,6 +93,20 @@ function PlaceViewModel() {
         self.places(self.places().sort(function (a, b) {
             return a.title == b.title ? 0 : (a.title < b.title ? -1 : 1)
         }));
+    }
+
+    self.populateInfoWindow = function (marker, infowindow) {
+
+        if (infowindow.marker != marker) {
+            infowindow.marker = marker;
+            infowindow.setContent('<div>' + marker.title + '</div>');
+            infowindow.open(map, marker);
+            /** Make sure the marker property is cleared if the infowindow is closed */
+            infowindow.addListener('closeclick', function () {
+                infowindow.setMarker(null);
+            });
+        }
+
     }
 
 
