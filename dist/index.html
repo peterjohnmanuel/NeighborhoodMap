@@ -39,7 +39,7 @@
             </div>
 
             <ul class="nav-side-ul" data-bind="foreach: places">
-                <li data-bind="text: title, event: { mouseover: $parent.markerMouseOver, mouseout: $parent.markerMouseOut}">
+                <li data-bind="text: title, click: $parent.showPlaceInfoWindow   ,event: { mouseover: $parent.markerMouseOver, mouseout: $parent.markerMouseOut}">
                     <a href="#"></a>
                 </li>
             </ul>

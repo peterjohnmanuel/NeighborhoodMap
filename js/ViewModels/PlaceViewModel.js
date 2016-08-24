@@ -125,6 +125,11 @@ function PlaceViewModel() {
         place.marker.setIcon(defaultIcon);
     }
 
+    self.showPlaceInfoWindow = function (place) {
+        var largerInfowindow = new google.maps.InfoWindow();
+        self.populateInfoWindow(place.marker, largerInfowindow);
+    }
+
 
 
 
