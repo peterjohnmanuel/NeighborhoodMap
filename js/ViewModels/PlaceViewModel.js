@@ -6,6 +6,9 @@ function PlaceViewModel() {
 
     var self = this;
 
+    var largerInfoWindow = null;
+    var bounds = null;
+
     self.places = ko.observableArray();
 
     self.initPlaces = function () {
@@ -21,8 +24,8 @@ function PlaceViewModel() {
     self.initializeMarkers = function () {
 
         /** Creating a info windows */
-        var largerInfowindow = new google.maps.InfoWindow();
-        var bounds = new google.maps.LatLngBounds();
+        largerInfoWindow = new google.maps.InfoWindow();
+        bounds = new google.maps.LatLngBounds();
 
         /** Style the markers a bit. This will be our listing marker icon. */
         var defaultIcon = makeMarkerIcon('0091ff');
@@ -43,7 +46,7 @@ function PlaceViewModel() {
 
             /** Create an onclick event to open an infowindow at each marker */
             place.marker.addListener('click', function () {
-                self.populateInfoWindow(this, largerInfowindow);
+                self.populateInfoWindow(this, largerInfoWindow);
             });
 
             /** Change marker color on mouseover */
@@ -70,7 +73,7 @@ function PlaceViewModel() {
      */
     self.showPlaces = function () {
 
-        var bounds = new google.maps.LatLngBounds();
+        bounds = new google.maps.LatLngBounds();
 
         self.places().forEach(function (place) {
             place.marker.setMap(map);
@@ -125,9 +128,12 @@ function PlaceViewModel() {
         place.marker.setIcon(defaultIcon);
     }
 
+    /**
+     * Show the selected place's' infoWindow
+     * @func showPlaceInfoWindow
+     */
     self.showPlaceInfoWindow = function (place) {
-        var largerInfowindow = new google.maps.InfoWindow();
-        self.populateInfoWindow(place.marker, largerInfowindow);
+        self.populateInfoWindow(place.marker, largerInfoWindow);
     }
 
 
