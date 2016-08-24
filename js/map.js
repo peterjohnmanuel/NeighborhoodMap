@@ -21,6 +21,6 @@ function initMap() {
         mapTypeControl: false
     });
 
-    displayedPlaces.InitializeMarkers();
+    displayedPlaces.initializeMarkers();
 
 }
