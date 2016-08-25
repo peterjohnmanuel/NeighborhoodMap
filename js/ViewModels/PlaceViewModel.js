@@ -104,7 +104,13 @@ function PlaceViewModel() {
      */
     self.filteredPlaces = ko.computed(function () {
         return ko.utils.arrayFilter(self.places(), function (place) {
-            return place.title.toLowerCase().indexOf(self.searchPlaces().toLowerCase()) > -1;
+
+            var result = place.title.toLowerCase().indexOf(self.searchPlaces().toLowerCase()) > -1;
+
+            if (place.marker != null) 
+                place.marker.setVisible(result);
+            
+            return result;
         });
     });
 
