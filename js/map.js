@@ -24,3 +24,17 @@ function initMap() {
     displayedPlaces.initializeMarkers();
 
 }
+
+/**
+ * Callback function if an error has occurred when loading google maps.
+ * @func googleMapsError
+ */
+function googleMapsError() {
+
+    console.log("Error occurred while loading google maps.");
+
+    //$(".nav-toggle-btn").visible(false);
+
+    document.getElementsByClassName("nav-toggle-btn").style.visibility = "hidden";
+
+}
