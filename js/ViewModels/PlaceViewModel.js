@@ -10,6 +10,7 @@ function PlaceViewModel() {
     var bounds = null;
 
     self.places = ko.observableArray(initialPlaceList);
+    self.searchPlaces = ko.observable('');
 
     self.initPlaces = function () {
         self.sortPlacesByName();
@@ -98,11 +99,14 @@ function PlaceViewModel() {
     }
 
     /**
-     * Search Places
+     * Filters places based on the searchPlaces observable
+     * @func filteredPlaces
      */
-    self.searchPlaces = function (value) {
-
-    };
+    self.filteredPlaces = ko.computed(function () {
+        return ko.utils.arrayFilter(self.places(), function (place) {
+            return place.title.toLowerCase().indexOf(self.searchPlaces().toLowerCase()) > -1;
+        });
+    });
 
     /**
      * Marker Mouse Over Event

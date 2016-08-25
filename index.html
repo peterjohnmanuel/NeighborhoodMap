@@ -35,13 +35,13 @@
 
             <div class="input-group">
 
-                <input type="text" name="txtSearchPlaces" class="form-control" placeholder="Search Places">
+                <input type="text" name="txtSearchPlaces" class="form-control" placeholder="Search Places" data-bind="textInput: searchPlaces">
                 <span class="input-group-btn">
                     <button class="btn btn-primary input-search" type="button"><i class="fa fa-search"></i></button>
                 </span>
             </div>
 
-            <ul class="nav-side-ul" data-bind="foreach: places">
+            <ul class="nav-side-ul" data-bind="foreach: filteredPlaces">
                 <li data-bind="text: title, click: $parent.showPlaceInfoWindow   ,event: { mouseover: $parent.markerMouseOver, mouseout: $parent.markerMouseOut}">
                     <a href="#"></a>
                 </li>
