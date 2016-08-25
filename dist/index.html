@@ -33,13 +33,16 @@
             <div class="input-group">
 
                 <input type="text" name="txtSearchPlaces" class="form-control" placeholder="Search Places" data-bind="textInput: searchPlaces">
+
                 <span class="input-group-btn">
-                    <button class="btn btn-primary input-search" type="button"><i class="fa fa-search"></i></button>
+                    <button class="btn btn-primary input-search" type="button" disabled>
+                        <i class="fa fa-search"></i>
+                        </button>
                 </span>
             </div>
 
             <ul class="nav-side-ul" data-bind="foreach: filteredPlaces">
-                <li data-bind="text: title, click: $parent.showPlaceInfoWindow   ,event: { mouseover: $parent.markerMouseOver, mouseout: $parent.markerMouseOut}">
+                <li data-bind="text: title, click: $parent.showPlaceInfoWindow , event: { mouseover: $parent.markerMouseOver, mouseout: $parent.markerMouseOut}">
                     <a href="#"></a>
                 </li>
             </ul>
@@ -53,6 +56,7 @@
 
 <script src="js/app.min.js"></script>
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNxaV2Rfymk3kfsdWeU_ZK0VWg_-c5ZTg&v=3&callback=initMap" onerror="googleMapsError()"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNxaV2Rfymk3kfsdWeU_ZK0VWg_-c5ZTg&v=3&callback=initMap"
+    onerror="googleMapsError()"></script>
 
 </html>
