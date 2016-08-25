@@ -9,15 +9,9 @@ function PlaceViewModel() {
     var largerInfoWindow = null;
     var bounds = null;
 
-    self.places = ko.observableArray();
+    self.places = ko.observableArray(initialPlaceList);
 
     self.initPlaces = function () {
-        self.places.push(new Place('Scarborough Beach', -34.2002806, 18.3726442));
-        self.places.push(new Place('Cape Point Lighthouse', -34.352502, 18.496412));
-        self.places.push(new Place('Boulders Beach', -34.197637, 18.452005));
-        self.places.push(new Place('Easy Tiger', -34.1080101, 18.4702441));
-        self.places.push(new Place('Kalky Fish & Chips', -34.130658, 18.450053));
-
         self.sortPlacesByName();
     };
 
