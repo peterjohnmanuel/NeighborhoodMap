@@ -6315,12 +6315,9 @@ body {
       color: #ffffff; }
       .nav-side .nav-side-ul li a {
         text-decoration: none;
-        display: block;
         text-align: left;
         color: #ffffff;
         padding: 10px 0; }
-      .nav-side .nav-side-ul li i {
-        padding-right: 15px; }
     .nav-side .nav-side-ul li:hover {
       background-color: #004466; }
 

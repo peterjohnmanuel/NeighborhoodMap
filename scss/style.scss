@@ -60,15 +60,10 @@ body {
             font-size: 16px;
             color: $nav-bar-text-color;
             a {
-                text-decoration: none;
-                display: block;
+                text-decoration: none;                
                 text-align: left;
                 color: $nav-bar-text-color;
                 padding: 10px 0;        
-            }
-
-            i{
-                padding-right: 15px;
             }
         }
 
