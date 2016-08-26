@@ -107,9 +107,9 @@ function PlaceViewModel() {
 
             var result = place.title.toLowerCase().indexOf(self.searchPlaces().toLowerCase()) > -1;
 
-            if (place.marker != null) 
+            if (place.marker != null)
                 place.marker.setVisible(result);
-            
+
             return result;
         });
     });
@@ -138,6 +138,11 @@ function PlaceViewModel() {
      */
     self.showPlaceInfoWindow = function (place) {
         self.populateInfoWindow(place.marker, largerInfoWindow);
+    }
+
+    self.setMapStyle = function () {
+        console.log("1");
+        map.setOptions(styles1);
     }
 
 

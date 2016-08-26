@@ -38,3 +38,48 @@ function googleMapsError() {
     document.getElementsByClassName("nav-toggle-btn").style.visibility = "hidden";
 
 }
+
+
+/** Google Map Style */
+var styles1 = [{
+    featureType: 'water',
+    stylers: [{ color: '#19a0d8' }]
+},
+    {
+        featureType: 'administrative',
+        elementType: 'labels.text.stroke',
+        stylers: [
+            { color: '#ffffff' },
+            { weight: 1 }
+        ]
+    },
+    {
+        featureType: 'administrative',
+        elementType: 'labels.text.file',
+        stylers: [
+            { color: '#e85113' },
+        ]
+    },
+    {
+        featureType: 'road.highway',
+        elementType: 'geometry.stroke',
+        stylers: [
+            { color: '#efe9e4' },
+            { lightness: -40 },
+        ]
+    },
+    {
+        featureType: 'transit.station',
+        stylers: [
+            { weight: 9 },
+            { hue: '#e85113' },
+        ]
+    },
+    {
+        featureType: 'road.highway',
+        elementType: 'labels.icon',
+        stylers: [
+            { visibility: 'off' }
+        ]
+    }
+]

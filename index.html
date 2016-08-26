@@ -22,36 +22,45 @@
 
     <nav class="nav-side">
         <h5 class="navbar-brand nav-side-brand">
-            <i class="fa fa-map-o"></i>
-            Neighborhood Map
+            <i class="fa fa-map-o"></i> Neighborhood Map
         </h5>
 
         <section class="container-fluid">
 
-            <div class="btn-group">
-                <button type="button" class="btn btn-primary" data-bind="click: showPlaces"><i class="fa fa-map-marker"></i></button>
-                <button type="button" class="btn btn-danger" data-bind="click: hidePlaces"><i class="fa fa-map-marker"></i></button>
-                <button type="button" class="btn btn-btn-primary" data-bind="click: sortPlacesByName"><i class="fa fa-sort-alpha-asc"></i></button>
+            <div id="mapView" class="btn-group btn-view">
+                <button type="button" class="btn btn-primary" data-bind="click: setMapToRoadMap"><i class="fa fa-road"></i></button>
+                <button type="button" class="btn btn-danger" data-bind="click: setMapToSatellite"><i class="fa fa-globe"></i></button>
+                <button type="button" class="btn btn-btn-primary" data-bind="click: setMapToTerrain"><i class="fa fa-sort-alpha-asc"></i></button>
+                <button type="button" class="btn btn-btn-primary" data-bind="click: setMapToHybrid"><i class="fa fa-sort-alpha-asc"></i></button>
+                <button type="button" class="btn btn-btn-primary" data-bind="click: setMapStyle"><i class="fa fa-sort-alpha-asc"></i></button>
             </div>
 
-            <hr>
 
-            <div class="input-group">
+            <section id="placeView">
+                <div class="btn-group btn-view">
+                    <button type="button" class="btn btn-primary" data-bind="click: showPlaces"><i class="fa fa-map-marker"></i></button>
+                    <button type="button" class="btn btn-danger" data-bind="click: hidePlaces"><i class="fa fa-map-marker"></i></button>
+                    <button type="button" class="btn btn-btn-primary" data-bind="click: sortPlacesByName"><i class="fa fa-sort-alpha-asc"></i></button>
+                    <button type="button" class="btn btn-btn-primary" data-bind="click: setMapStyle"><i class="fa fa-sort-alpha-asc"></i></button>
+                </div>
 
-                <input type="text" name="txtSearchPlaces" class="form-control" placeholder="Search Places" data-bind="textInput: searchPlaces">
+                <div class="input-group">
 
-                <span class="input-group-btn">
+                    <input type="text" name="txtSearchPlaces" class="form-control" placeholder="Search Places" data-bind="textInput: searchPlaces">
+
+                    <span class="input-group-btn">
                     <button class="btn btn-primary input-search" type="button" disabled>
                         <i class="fa fa-search"></i>
                         </button>
                 </span>
-            </div>
+                </div>
 
-            <ul class="nav-side-ul" data-bind="foreach: filteredPlaces">
-                <li data-bind="text: title, click: $parent.showPlaceInfoWindow , event: { mouseover: $parent.markerMouseOver, mouseout: $parent.markerMouseOut}">
-                    <a href="#"></a>
-                </li>
-            </ul>
+                <ul class="nav-side-ul" data-bind="foreach: filteredPlaces">
+                    <li data-bind="text: title, click: $parent.showPlaceInfoWindow , event: { mouseover: $parent.markerMouseOver, mouseout: $parent.markerMouseOut}">
+                        <a href="#"></a>
+                    </li>
+                </ul>
+            </section>
         </section>
     </nav>
 
@@ -66,6 +75,7 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/Models/Place.js"></script>
 <script src="js/ViewModels/PlaceViewModel.js"></script>
+<script src="js/ViewModels/MapViewModel.js"></script>
 <script src="js/app.js"></script>
 <script src="js/map.js"></script>
 <!-- endbuild -->

@@ -8,8 +8,10 @@
 
 /** Global Variables */
 var displayedPlaces = new PlaceViewModel();
+var mapOptions = new MapViewModel();
 
-ko.applyBindings(displayedPlaces);
+ko.applyBindings(displayedPlaces, document.getElementById('placeView'));
+ko.applyBindings(mapOptions, document.getElementById('mapView'));
 
 displayedPlaces.initPlaces();
 

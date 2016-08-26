@@ -48,12 +48,12 @@ body {
         color: #ffffff;
         margin-top: 0px;
         width: $nav-bar-width;
-        margin-bottom: 20px;
+        margin-bottom: 5px
     }
 
     .nav-side-ul {
         list-style: none;
-        margin-top: 22px;        
+        margin-top: 10px;        
 	
         li {
             
@@ -124,3 +124,7 @@ body {
     min-height: 34px;
 }
 
+
+.btn-view{
+    margin: 7px;
+}
