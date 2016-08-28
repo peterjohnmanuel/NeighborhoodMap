@@ -6311,13 +6311,17 @@ body {
     list-style: none;
     margin-top: 10px; }
     .nav-side .nav-side-ul li {
-      font-size: 16px;
+      font-size: 18px;
       color: #ffffff; }
       .nav-side .nav-side-ul li a {
         text-decoration: none;
         text-align: left;
         color: #ffffff;
         padding: 10px 0; }
+      .nav-side .nav-side-ul li i {
+        float: right;
+        text-align: right;
+        padding-right: 2px; }
     .nav-side .nav-side-ul li:hover {
       background-color: #004466; }
 
@@ -6359,3 +6363,7 @@ nav {
 
 .btn-view {
   margin: 7px; }
+
+#pano {
+  width: 200px;
+  height: 200px; }

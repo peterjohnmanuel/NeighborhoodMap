@@ -57,14 +57,23 @@ body {
 	
         li {
             
-            font-size: 16px;
+            font-size: 18px;
             color: $nav-bar-text-color;
+
             a {
                 text-decoration: none;                
                 text-align: left;
                 color: $nav-bar-text-color;
-                padding: 10px 0;        
+                padding: 10px 0;                    
             }
+
+            i{                 
+                float: right;
+                text-align: right;
+                padding-right: 2px; 
+            }
+            
+
         }
 
         li:hover {
@@ -123,3 +132,8 @@ body {
 .btn-view{
     margin: 7px;
 }
+
+      #pano {
+        width: 200px;
+        height: 200px;
+      }

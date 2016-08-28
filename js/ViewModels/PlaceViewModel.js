@@ -121,7 +121,7 @@ function PlaceViewModel() {
     self.markerMouseOver = function (place) {
         var highlightedIcon = makeMarkerIcon('FFFF24');
         place.marker.setIcon(highlightedIcon);
-    }
+    };
 
     /**
      * Marker Mouse Out Event
@@ -130,7 +130,7 @@ function PlaceViewModel() {
     self.markerMouseOut = function (place) {
         var defaultIcon = makeMarkerIcon('0091ff');
         place.marker.setIcon(defaultIcon);
-    }
+    };
 
     /**
      * Show the selected place's' infoWindow
@@ -138,14 +138,7 @@ function PlaceViewModel() {
      */
     self.showPlaceInfoWindow = function (place) {
         self.populateInfoWindow(place.marker, largerInfoWindow);
-    }
-
-    self.setMapStyle = function () {
-        console.log("1");
-        map.setOptions(styles1);
-    }
-
-
+    };
 
 
     self.populateInfoWindow = function (marker, infowindow) {
@@ -175,7 +168,7 @@ function PlaceViewModel() {
                         position: nearStreetViewLocation,
                         pov: {
                             heading: heading,
-                            pitch: 30
+                            pitch: 20
                         }
                     };
 
