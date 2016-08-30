@@ -6367,3 +6367,9 @@ nav {
 #pano {
   width: 200px;
   height: 200px; }
+
+#wikipedia {
+  list-style: none; }
+
+.wiki-entry {
+  list-style: none; }

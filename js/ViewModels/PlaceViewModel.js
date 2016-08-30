@@ -8,6 +8,7 @@ function PlaceViewModel() {
 
     var largerInfoWindow = null;
     var bounds = null;
+    var wikiRequestTimeout = null;
 
     self.places = ko.observableArray(initialPlaceList);
     self.searchPlaces = ko.observable('');
@@ -41,7 +42,7 @@ function PlaceViewModel() {
 
             /** Create an onclick event to open an infowindow at each marker */
             place.marker.addListener('click', function () {
-                self.populateInfoWindow(this, largerInfoWindow);
+                self.populateInfoWindow(place, largerInfoWindow);
             });
 
             /** Change marker color on mouseover */
@@ -137,21 +138,26 @@ function PlaceViewModel() {
      * @func showPlaceInfoWindow
      */
     self.showPlaceInfoWindow = function (place) {
-        self.populateInfoWindow(place.marker, largerInfoWindow);
+        self.populateInfoWindow(place, largerInfoWindow);
     };
 
 
-    self.populateInfoWindow = function (marker, infowindow) {
+    /**
+     * Populate the info window on click
+     * @func populateInfoWindow
+     */
+    self.populateInfoWindow = function (place, infoWindow) {
 
-        // Check to make sure the infowindow is not already opened on this marker.
-        if (infowindow.marker != marker) {
-            // Clear the infowindow content to give the streetview time to load.
-            infowindow.setContent('');
-            infowindow.marker = marker;
-            // Make sure the marker property is cleared if the infowindow is closed.
-            infowindow.addListener('closeclick', function () {
-                infowindow.marker = null;
+                        
+        if (infoWindow.marker != place.marker) {
+
+            infoWindow.setContent('');
+            infoWindow.marker = place.marker;
+
+            infoWindow.addListener('closeclick', function () {
+                infoWindow.marker = null;
             });
+
             var streetViewService = new google.maps.StreetViewService();
             var radius = 50;
             // In case the status is OK, which means the pano was found, compute the
@@ -160,10 +166,10 @@ function PlaceViewModel() {
             function getStreetView(data, status) {
                 if (status == google.maps.StreetViewStatus.OK) {
                     var nearStreetViewLocation = data.location.latLng;
-                    var heading = google.maps.geometry.spherical.computeHeading(nearStreetViewLocation, marker.position);
+                    var heading = google.maps.geometry.spherical.computeHeading(nearStreetViewLocation, place.marker.position);
 
 
-                    infowindow.setContent('<div>' + marker.title + '</div><div id="pano"></div>');
+                    infoWindow.setContent('<div>' + place.marker.title + '</div><div id="pano"></div><div id="wikipedia"></div>');
                     var panoramaOptions = {
                         position: nearStreetViewLocation,
                         pov: {
@@ -175,31 +181,60 @@ function PlaceViewModel() {
                     var panorama = new google.maps.StreetViewPanorama(document.getElementById('pano'), panoramaOptions);
                 }
                 else {
-                    infowindow.setContent('<div>' + marker.title + '</div>' + '<div>No Street View Found</div>');
+                    infoWindow.setContent('<div>' + place.marker.title + '</div>' + '<div>No Street View Found</div><ul id="wikipedia"></ul>');
                 }
             }
+
+
+            wikiRequestTimeout = setTimeout(function () {
+                alert("Failed to load wikipedia resources.");
+                //$wikiElem.text("failed to get wikipedia resources");
+            }, 8000);
+
+            getWikipediaEntries(place);
+
             // Use streetview service to get the closest streetview image within
             // 50 meters of the markers position
-            streetViewService.getPanoramaByLocation(marker.position, radius, getStreetView);
+            streetViewService.getPanoramaByLocation(place.marker.position, radius, getStreetView);
             // Open the infowindow on the correct marker.
-            infowindow.open(map, marker);
+            infoWindow.open(map, place.marker);
+
+
         }
 
     }
 
-    /** This function takes in a COLOR, and then creates a new marker icon of theat color.
-     * The icon will be 21 px wide by 24 high, have an origin of 0, 0 and be anchored at 10,34
-     */
-    function makeMarkerIcon(markerColor) {
-        var markerImage = new google.maps.MarkerImage(
-            'http://chart.googleapis.com/chart?chst=d_map_spin&chld=1.15|0|' + markerColor + '|40|_|%E2%80%A2',
-            new google.maps.Size(34, 34),
-            new google.maps.Point(0, 0),
-            new google.maps.Point(10, 34),
-            new google.maps.Size(21, 34)
-        )
-        return markerImage;
-    }
+
+    /** 
+     * Checks and sees if there are wikipedia entries found for the location.
+     * @func getWikipediaEntries
+    */
+    function getWikipediaEntries (place) {
+
+
+
+        $.ajax({
+            url: "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + place.marker.title + "&text=" + place.city +"&format=json&callback=wikiCallback",
+            dataType: "jsonp",
+        }).done(function (data) {
+
+            console.log(data);
+            var articles = data[1];
+            var items = []
+            var urlString;
+
+            for (var i = 0; i < articles.length; i++) {
+                urlString = articles[i].replace(/ /g, "_")
+                items.push("<li><a class='wiki-entry fa fa-wikipedia-w' href='https://en.wikipedia.org/wiki/" + articles[i] + "'>  " + articles[i] + "<a></li>");
+            }
+
+            $("#wikipedia").append(items);
+
+            clearTimeout(wikiRequestTimeout);
+        }).fail(function (data) {
+            console.log(data);
+        });
+    };
 
 
 }
