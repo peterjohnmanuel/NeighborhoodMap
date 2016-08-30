@@ -38,9 +38,21 @@
 
             <section id="placeView">
                 <div class="btn-group btn-view">
-                    <button type="button" class="btn btn-primary" data-bind="click: showPlaces"><i class="fa fa-map-marker"></i></button>
-                    <button type="button" class="btn btn-danger" data-bind="click: hidePlaces"><i class="fa fa-map-marker"></i></button>
-                    <button type="button" class="btn btn-primary" data-bind="click: sortPlacesByName"><i class="fa fa-sort-alpha-asc"></i></button>
+
+                    <button type="button" class="btn btn-default" data-bind="click: setMarkersVisibility">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-map-marker fa-stack-1x"></i>
+                            <i class="fa fa-stack-2x text-danger" data-bind="css: {'fa-ban': !markersVisible(), '': markersVisible }"></i>
+                        </span>
+                    </button>
+
+                    <button type="button" class="btn btn-primary" data-bind="">
+                        <!--<i class="fa fa-sort-alpha-asc"></i>-->
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-camera fa-stack-1x"></i>
+                            <i class="fa fa-stack-2x text-danger" data-bind=""></i>
+                        </span>
+                    </button>
                 </div>
 
                 <div class="input-group">

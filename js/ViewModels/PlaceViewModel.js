@@ -13,6 +13,13 @@ function PlaceViewModel() {
     self.places = ko.observableArray(initialPlaceList);
     self.searchPlaces = ko.observable('');
 
+
+    self.hotelVisible = ko.observable(true);
+    self.beachVisible = ko.observable(true);
+    self.viewVisible = ko.observable(true);
+    self.restaurantVisible = ko.observable(true);
+    self.markersVisible = ko.observable(true);
+
     self.initPlaces = function () {
         self.sortPlacesByName();
     };
@@ -62,32 +69,6 @@ function PlaceViewModel() {
         });
 
     }
-
-    /**
-     * Show Places
-     * @func showPlaces
-     */
-    self.showPlaces = function () {
-
-        bounds = new google.maps.LatLngBounds();
-
-        self.places().forEach(function (place) {
-            place.marker.setMap(map);
-            bounds.extend(place.marker.position);
-        });
-
-        map.fitBounds(bounds);
-    };
-
-    /** 
-     * Hide places 
-     * @func hidePlaces
-    */
-    self.hidePlaces = function () {
-        self.places().forEach(function (place) {
-            place.marker.setMap(null);
-        });
-    };
 
     /**
      * Sort Places
@@ -148,7 +129,7 @@ function PlaceViewModel() {
      */
     self.populateInfoWindow = function (place, infoWindow) {
 
-                        
+
         if (infoWindow.marker != place.marker) {
 
             infoWindow.setContent('');
@@ -209,12 +190,12 @@ function PlaceViewModel() {
      * Checks and sees if there are wikipedia entries found for the location.
      * @func getWikipediaEntries
     */
-    function getWikipediaEntries (place) {
+    function getWikipediaEntries(place) {
 
 
 
         $.ajax({
-            url: "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + place.marker.title + "&text=" + place.city +"&format=json&callback=wikiCallback",
+            url: "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + place.marker.title + "&text=" + place.city + "&format=json&callback=wikiCallback",
             dataType: "jsonp",
         }).done(function (data) {
 
@@ -236,5 +217,31 @@ function PlaceViewModel() {
         });
     };
 
+    /**
+     * sets the markers visibility 
+     * @func setMarkersVisibility
+     */
+    self.setMarkersVisibility = function () {
+        if (self.markersVisible() === true) {
 
+            self.places().forEach(function (place) {
+                place.marker.setMap(null);
+            });
+
+            self.markersVisible(false);
+        }
+        else if (self.markersVisible() === false) {
+
+            bounds = new google.maps.LatLngBounds();
+
+            self.places().forEach(function (place) {
+                place.marker.setMap(map);
+                bounds.extend(place.marker.position);
+            });
+
+            map.fitBounds(bounds);
+
+            self.markersVisible(true)
+        }
+    };
 }
