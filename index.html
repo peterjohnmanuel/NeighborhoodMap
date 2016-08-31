@@ -87,10 +87,10 @@
                 </div>
 
                 <ul class="nav-side-ul" data-bind="foreach: filteredPlaces">
-                    <li>
+                    <li data-bind="event: { mouseover: $parent.markerMouseOver, mouseout: $parent.markerMouseOut}">
                         <span>
                             
-                            <a href="#" data-bind="text: title, click: $parent.showPlaceInfoWindow , event: { mouseover: $parent.markerMouseOver, mouseout: $parent.markerMouseOut}"></a>
+                            <a href="#" data-bind="text: title, click: $parent.showPlaceInfoWindow"></a>
                             <i class="" data-bind="css: icon "></i>
                         </span>
                     </li>
