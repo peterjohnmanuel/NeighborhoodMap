@@ -14,11 +14,11 @@ function PlaceViewModel() {
     self.searchPlaces = ko.observable('');
 
 
+    self.markersVisible = ko.observable(true);
     self.hotelVisible = ko.observable(true);
     self.beachVisible = ko.observable(true);
     self.viewVisible = ko.observable(true);
     self.restaurantVisible = ko.observable(true);
-    self.markersVisible = ko.observable(true);
 
     self.initPlaces = function () {
         self.sortPlacesByName();
@@ -89,7 +89,7 @@ function PlaceViewModel() {
 
             var result = place.title.toLowerCase().indexOf(self.searchPlaces().toLowerCase()) > -1;
 
-            if (place.marker != null)
+            if (place.marker !== null)
                 place.marker.setVisible(result);
 
             return result;
@@ -244,4 +244,17 @@ function PlaceViewModel() {
             self.markersVisible(true)
         }
     };
+
+
+    self.setHotelVisibility = function () {
+        if (self.hotelVisible() === true) {
+            self.hotelVisible(false);           
+        }
+        else if (self.hotelVisible() === false) {
+            self.hotelVisible(true);
+        }
+
+    }
+
+
 }
