@@ -5,24 +5,47 @@
 */
 function MapViewModel() {
 
+
+    self.roadMapActive = ko.observable(true);
+    self.satelliteActive = ko.observable(false);
+    self.terrainActive = ko.observable(false);
+    self.hybridActive = ko.observable(false);
+
     self.setMapToRoadMap = function () {
+        setMapsFalse();
         map.setMapTypeId('roadmap');
+        self.roadMapActive(true);
     }
 
     self.setMapToSatellite = function () {
+        setMapsFalse();
         map.setMapTypeId('satellite');
+        self.satelliteActive(true);
     }
 
     self.setMapToTerrain = function () {
+        setMapsFalse();
         map.setMapTypeId('terrain');
+        self.terrainActive(true);
     }
 
     self.setMapToHybrid = function () {
+        setMapsFalse();
         map.setMapTypeId('hybrid');
+        self.hybridActive(true);
     }
 
     self.setMapStyle = function () {
         map.setOptions(styles1);
+    }
+
+    function setMapsFalse() {
+
+        self.roadMapActive(false);
+        self.satelliteActive(false);
+        self.terrainActive(false);
+        self.hybridActive(false);
+
     }
 
 }

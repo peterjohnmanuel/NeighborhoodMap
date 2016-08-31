@@ -25,11 +25,11 @@
         <section class="container-fluid">
 
             <div id="mapView" class="btn-group btn-view">
-                <button type="button" class="btn btn-primary" data-bind="click: setMapToRoadMap"><i class="fa fa-road"></i></button>
-                <button type="button" class="btn btn-danger" data-bind="click: setMapToSatellite"><i class="fa fa-globe"></i></button>
-                <button type="button" class="btn btn-btn-primary" data-bind="click: setMapToTerrain"><i class="fa fa-sort-alpha-asc"></i></button>
-                <button type="button" class="btn btn-btn-primary" data-bind="click: setMapToHybrid"><i class="fa fa-sort-alpha-asc"></i></button>
-                <button type="button" class="btn btn-btn-primary" data-bind="click: setMapStyle"><i class="fa fa-sort-alpha-asc"></i></button>
+                <button type="button" class="btn btn-primary" data-bind="click: setMapToRoadMap, css: {'btn-primary': roadMapActive(), '': !roadMapActive }"><i class="fa fa-road"></i></button>
+                <button type="button" class="btn " data-bind="click: setMapToSatellite, css: {'btn-primary': satelliteActive(), '': !satelliteActive }"><i class="fa fa-globe"></i></button>
+                <button type="button" class="btn " data-bind="click: setMapToTerrain, css: {'btn-primary': terrainActive(), '': !terrainActive }"><i class="fa fa-area-chart"></i></button>
+                <button type="button" class="btn " data-bind="click: setMapToHybrid, css: {'btn-primary': hybridActive(), '': !hybridActive }"><i class="fa fa-picture-o"></i></button>
+                <button type="button" class="btn " data-bind="click: setMapStyle"><i class="fa fa-sort-alpha-asc"></i></button>
             </div>
 
 
