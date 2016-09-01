@@ -15,11 +15,19 @@ var map;
  */
 function initMap() {
 
+    var customStyledMapType = new google.maps.StyledMapType(customMapStyle);
+
     map = new google.maps.Map(document.getElementById('map'), {
         center: { lat: -34.2002806, lng: 18.3726442 },
         zoom: 13,
-        mapTypeControl: false
+        mapTypeControl: false,
+        mapTypeControlOptions: {
+            mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain','customStyleMap']
+          }
     });
+
+    map.mapTypes.set('customStyleMap', customStyledMapType);
+    //map.setMapTypeId('customStyleMap');
 
     displayedPlaces.initializeMarkers();
 
@@ -56,7 +64,7 @@ function makeMarkerIcon(markerColor) {
 
 
 /** Google Map Style */
-var styles1 = [{
+var customMapStyle = [{
     featureType: 'water',
     stylers: [{ color: '#19a0d8' }]
 },

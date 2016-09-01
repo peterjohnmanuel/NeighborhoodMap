@@ -10,6 +10,7 @@ function MapViewModel() {
     self.satelliteActive = ko.observable(false);
     self.terrainActive = ko.observable(false);
     self.hybridActive = ko.observable(false);
+    self.customMapActive = ko.observable(false);
 
     self.setMapToRoadMap = function () {
         setMapsFalse();
@@ -35,17 +36,18 @@ function MapViewModel() {
         self.hybridActive(true);
     }
 
-    self.setMapStyle = function () {
-        map.setOptions(styles1);
+    self.setCustomMapStyle = function () {
+        setMapsFalse();
+        map.setMapTypeId('customStyleMap');
+        self.customMapActive(true);
     }
 
     function setMapsFalse() {
-
         self.roadMapActive(false);
         self.satelliteActive(false);
         self.terrainActive(false);
         self.hybridActive(false);
-
+        self.customMapActive(false);
     }
 
 }
