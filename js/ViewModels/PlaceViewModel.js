@@ -241,37 +241,6 @@ function PlaceViewModel() {
     }
 
 
-    /** 
-     * Checks and sees if there are wikipedia entries found for the location.
-     * @func getWikipediaEntries
-    */
-    function getWikipediaEntries(place) {
-
-
-
-        $.ajax({
-            url: "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + place.marker.title + "&text=" + place.city + "&format=json&callback=wikiCallback",
-            dataType: "jsonp",
-        }).done(function (data) {
-
-            console.log(data);
-            var articles = data[1];
-            var items = []
-            var urlString;
-
-            for (var i = 0; i < articles.length; i++) {
-                urlString = articles[i].replace(/ /g, "_")
-                items.push("<li><a class='wiki-entry fa fa-wikipedia-w' href='https://en.wikipedia.org/wiki/" + articles[i] + "'>  " + articles[i] + "<a></li>");
-            }
-
-            $("#wikipedia").append(items);
-
-            clearTimeout(wikiRequestTimeout);
-        }).fail(function (data) {
-            console.log(data);
-        });
-    };
-
     /**
      * sets the markers visibility 
      * @func setMarkersVisibility
@@ -335,4 +304,34 @@ function PlaceViewModel() {
         self.restaurantVisible() === true ? self.restaurantVisible(false) : self.restaurantVisible(true);
         self.filteredPlaces();
     }
+
+
+    /** 
+     * Checks and sees if there are wikipedia entries found for the location.
+     * @func getWikipediaEntries
+    */
+    function getWikipediaEntries(place) {
+
+        $.ajax({
+            url: "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + place.marker.title + "&text=" + place.city + "&format=json&callback=wikiCallback",
+            dataType: "jsonp",
+        }).done(function (data) {
+
+            console.log(data);
+            var articles = data[1];
+            var items = []
+            var urlString;
+
+            for (var i = 0; i < articles.length; i++) {
+                urlString = articles[i].replace(/ /g, "_")
+                items.push("<li><a class='wiki-entry fa fa-wikipedia-w' href='https://en.wikipedia.org/wiki/" + articles[i] + "'>  " + articles[i] + "<a></li>");
+            }
+
+            $("#wikipedia").append(items);
+
+            clearTimeout(wikiRequestTimeout);
+        }).fail(function (data) {
+            console.log(data);
+        });
+    };
 }

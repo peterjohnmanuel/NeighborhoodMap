@@ -36,35 +36,35 @@
             <section id="placeView">
                 <div class="btn-group btn-view">
 
-                    <button type="button" class="btn btn-default" data-bind="click: setMarkersVisibility">
+                    <button type="button" class="btn btn-default" title="Hide/Show Markers" data-bind="click: setMarkersVisibility">
                         <span class="fa-stack fa-lg">
                             <i class="fa fa-map-marker fa-stack-1x"></i>
                             <i class="fa fa-stack-2x text-danger" data-bind="css: {'fa-ban': !markersVisible(), '': markersVisible }"></i>
                         </span>
                     </button>
 
-                    <button type="button" class="btn btn-default" data-bind="click: setHotelVisibility">
+                    <button type="button" class="btn btn-default" title="Hide/Show Hotels" data-bind="click: setHotelVisibility">
                         <span class="fa-stack fa-lg">
                             <i class="fa fa-bed fa-stack-1x"></i>
                             <i class="fa fa-stack-2x text-danger" data-bind="css: {'fa-ban': !hotelVisible(), '': hotelVisible }"></i>
                         </span>
                     </button>
 
-                    <button type="button" class="btn btn-default" data-bind="click: setRestaurantVisibility"">
+                    <button type="button" class="btn btn-default" title="Hide/Show Restaurants" data-bind="click: setRestaurantVisibility"">
                         <span class="fa-stack fa-lg">
                             <i class="fa fa-cutlery fa-stack-1x"></i>
                             <i class="fa fa-stack-2x text-danger" data-bind="css: {'fa-ban': !restaurantVisible(), '': restaurantVisible }"></i>
                         </span>
                     </button>
 
-                    <button type="button" class="btn btn-default" data-bind="click: setBeachVisibility"">
+                    <button type="button" class="btn btn-default" title="Hide/Show Beachs" data-bind="click: setBeachVisibility"">
                         <span class="fa-stack fa-lg">
                             <i class="fa fa-umbrella fa-stack-1x"></i>
                             <i class="fa fa-stack-2x text-danger" data-bind="css: {'fa-ban': !beachVisible(), '': beachVisible }"></i>
                         </span>
                     </button>
 
-                    <button type="button" class="btn btn-default" data-bind="click: setViewVisibility"">
+                    <button type="button" class="btn btn-default" title="Hide/Show Views" data-bind="click: setViewVisibility"">
                         <span class="fa-stack fa-lg">
                             <i class="fa fa-street-view fa-stack-1x"></i>
                             <i class="fa fa-stack-2x text-danger" data-bind="css: {'fa-ban': !viewVisible(), '': viewVisible }"></i>
