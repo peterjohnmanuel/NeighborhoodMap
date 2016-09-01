@@ -50,24 +50,24 @@
                         </span>
                     </button>
 
-                    <button type="button" class="btn btn-default" data-bind="">
+                    <button type="button" class="btn btn-default" data-bind="click: setRestaurantVisibility"">
                         <span class="fa-stack fa-lg">
                             <i class="fa fa-cutlery fa-stack-1x"></i>
-                            <i class="fa fa-stack-2x text-danger" data-bind=""></i>
+                            <i class="fa fa-stack-2x text-danger" data-bind="css: {'fa-ban': !restaurantVisible(), '': restaurantVisible }"></i>
                         </span>
                     </button>
 
-                    <button type="button" class="btn btn-default" data-bind="">
+                    <button type="button" class="btn btn-default" data-bind="click: setBeachVisibility"">
                         <span class="fa-stack fa-lg">
                             <i class="fa fa-umbrella fa-stack-1x"></i>
-                            <i class="fa fa-stack-2x text-danger" data-bind=""></i>
+                            <i class="fa fa-stack-2x text-danger" data-bind="css: {'fa-ban': !beachVisible(), '': beachVisible }"></i>
                         </span>
                     </button>
 
-                    <button type="button" class="btn btn-default" data-bind="">
+                    <button type="button" class="btn btn-default" data-bind="click: setViewVisibility"">
                         <span class="fa-stack fa-lg">
                             <i class="fa fa-street-view fa-stack-1x"></i>
-                            <i class="fa fa-stack-2x text-danger" data-bind=""></i>
+                            <i class="fa fa-stack-2x text-danger" data-bind="css: {'fa-ban': !viewVisible(), '': viewVisible }"></i>
                         </span>
                     </button>                    
                 </div>

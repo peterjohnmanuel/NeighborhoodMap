@@ -84,16 +84,73 @@ function PlaceViewModel() {
      * Filters places based on the searchPlaces observable
      * @func filteredPlaces
      */
-    self.filteredPlaces = ko.computed(function () {
-        return ko.utils.arrayFilter(self.places(), function (place) {
+    self.filteredPlaces = ko.pureComputed({
 
-            var result = place.title.toLowerCase().indexOf(self.searchPlaces().toLowerCase()) > -1;
+        read: function () {
 
-            if (place.marker !== null)
-                place.marker.setVisible(result);
+            return ko.utils.arrayFilter(self.places(), function (place) {
 
-            return result;
-        });
+                var result = place.title.toLowerCase().indexOf(self.searchPlaces().toLowerCase()) > -1;
+
+                /** Check if the hotel filter has been applied. */
+                if (place.constructor.name === 'Hotel' && self.hotelVisible() !== null && place.marker !== null) {
+
+                    if (self.hotelVisible() === true && result == false) {
+                        place.marker.setVisible(result);
+                        return result;
+                    }
+                    else {
+                        place.marker.setVisible(self.hotelVisible());
+                        return self.hotelVisible();
+                    }
+                }
+
+                /** Check if the beach filter has been applied. */
+                if (place.constructor.name === 'Beach' && self.beachVisible() !== null && place.marker !== null) {
+
+                    if (self.beachVisible() === true && result == false) {
+                        place.marker.setVisible(result);
+                        return result;
+                    }
+                    else {
+                        place.marker.setVisible(self.beachVisible());
+                        return self.beachVisible();
+                    }
+                }               
+
+                /** Check if the view filter has been applied. */
+                if (place.constructor.name === 'View' && self.viewVisible() !== null && place.marker !== null) {
+
+                    if (self.viewVisible() === true && result == false) {
+                        place.marker.setVisible(result);
+                        return result;
+                    }
+                    else {
+                        place.marker.setVisible(self.viewVisible());
+                        return self.viewVisible();
+                    }
+                }
+
+                /** Check if the restaurant filter has been applied. */
+                if (place.constructor.name === 'Restaurant' && self.restaurantVisible() !== null && place.marker !== null) {
+
+                    if (self.restaurantVisible()  === true && result == false) {
+                        place.marker.setVisible(result);
+                        return result;
+                    }
+                    else {
+                        place.marker.setVisible(self.restaurantVisible());
+                        return self.restaurantVisible();
+                    }
+                }
+
+                /** Code from here is for the initial loading of the view. */
+                 if (place.marker !== null)
+                     place.marker.setVisible(result);
+
+                 return result;
+            });
+        }
     });
 
     /**
@@ -179,8 +236,6 @@ function PlaceViewModel() {
             streetViewService.getPanoramaByLocation(place.marker.position, radius, getStreetView);
             // Open the infowindow on the correct marker.
             infoWindow.open(map, place.marker);
-
-
         }
 
     }
@@ -245,16 +300,39 @@ function PlaceViewModel() {
         }
     };
 
-
+    /** 
+     * Set Hotel Visibility based on state
+     * @func setHotelVisibility
+     */
     self.setHotelVisibility = function () {
-        if (self.hotelVisible() === true) {
-            self.hotelVisible(false);           
-        }
-        else if (self.hotelVisible() === false) {
-            self.hotelVisible(true);
-        }
-
+        self.hotelVisible() === true ? self.hotelVisible(false) : self.hotelVisible(true);
+        self.filteredPlaces();
     }
 
+    /**
+     * Set Beach Visibility based on state
+     * @func setBeachVisibility
+     */
+    self.setBeachVisibility = function () {
+        self.beachVisible() === true ? self.beachVisible(false) : self.beachVisible(true);
+        self.filteredPlaces();
+    }
 
+    /**
+     * Set Beach Visibility based on state
+     * @func setViewVisibility
+     */
+    self.setViewVisibility = function () {
+        self.viewVisible() === true ? self.viewVisible(false) : self.viewVisible(true);
+        self.filteredPlaces();
+    }
+
+    /**
+     * Set Restaurant Visibility based on state
+     * @func setRestaurantVisibility
+     */
+    self.setRestaurantVisibility = function () {
+        self.restaurantVisible() === true ? self.restaurantVisible(false) : self.restaurantVisible(true);
+        self.filteredPlaces();
+    }
 }
