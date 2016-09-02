@@ -207,7 +207,7 @@ function PlaceViewModel() {
                     var heading = google.maps.geometry.spherical.computeHeading(nearStreetViewLocation, place.marker.position);
 
 
-                    infoWindow.setContent('<div>' + place.marker.title + '</div><div id="pano"></div><div id="wikipedia"></div>');
+                    infoWindow.setContent('<div>' + place.marker.title + '</div><div id="pano"></div><ul id="wikipedia"></ul><ul id="wikipedia"></ul><h6 id="weather"></h6>');
                     var panoramaOptions = {
                         position: nearStreetViewLocation,
                         pov: {
@@ -219,7 +219,7 @@ function PlaceViewModel() {
                     var panorama = new google.maps.StreetViewPanorama(document.getElementById('pano'), panoramaOptions);
                 }
                 else {
-                    infoWindow.setContent('<div>' + place.marker.title + '</div>' + '<div>No Street View Found</div><ul id="wikipedia"></ul>');
+                    infoWindow.setContent('<div>' + place.marker.title + '</div>' + '<div>No Street View Found</div><ul id="wikipedia"></ul><h6 id="weather"></h6>');
                 }
             }
 
@@ -230,6 +230,8 @@ function PlaceViewModel() {
             }, 8000);
 
             getWikipediaEntries(place);
+
+            getWeatherEntryForLocation(place);
 
             // Use streetview service to get the closest streetview image within
             // 50 meters of the markers position
@@ -334,4 +336,28 @@ function PlaceViewModel() {
             console.log(data);
         });
     };
+
+    /** 
+     * Get weather entry based on the location.
+     * @func getWeatherEntryForLocation
+    */
+    function getWeatherEntryForLocation(place){
+
+        var url = 'http://api.openweathermap.org/data/2.5/weather?lat=' + place.location.lat + '&lon=' + place.location.lat + '&APPID=c83925a9755f965ddc1faa179431f8ea';
+        $.ajax({
+            url: url,
+            dataType: 'json'
+
+        }).done(function (data){
+
+            var weather = data.weather[0];
+
+            $('#weather').append(weather.main);
+            console.log(data.weather[0]);
+        }).fail(function (data){
+
+        });
+
+
+    }
 }
