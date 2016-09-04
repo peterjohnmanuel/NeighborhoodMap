@@ -6364,12 +6364,19 @@ nav {
 .btn-view {
   margin: 7px; }
 
-#pano {
-  width: 200px;
-  height: 200px; }
-
 #wikipedia {
   list-style: none; }
 
 .wiki-entry {
   list-style: none; }
+
+.infoWindow {
+  max-width: 250 px; }
+  .infoWindow hr {
+    margin-top: 10px;
+    margin-bottom: 0px; }
+
+/* Picture street view on info window.*/
+#streetView {
+  width: 250px;
+  height: 150px; }
