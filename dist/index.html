@@ -24,7 +24,7 @@
 
         <section class="container-fluid">
 
-            <div id="mapView" class="btn-group btn-view">
+            <div id="mapView" class="btn-group btn-view btn-map-group">
                 <button type="button" class="btn" title="Road Map" data-bind="click: setMapToRoadMap, css: {'btn-primary': roadMapActive(), '': !roadMapActive }"><i class="fa fa-road"></i></button>
                 <button type="button" class="btn" title="Satellite Map" data-bind="click: setMapToSatellite, css: {'btn-primary': satelliteActive(), '': !satelliteActive }"><i class="fa fa-globe"></i></button>
                 <button type="button" class="btn" title="Terrain Map" data-bind="click: setMapToTerrain, css: {'btn-primary': terrainActive(), '': !terrainActive }"><i class="fa fa-area-chart"></i></button>
@@ -34,7 +34,7 @@
 
 
             <section id="placeView">
-                <div class="btn-group btn-view">
+                <div class="btn-group btn-view btn-place-group">
 
                     <button type="button" class="btn btn-default" title="Hide/Show Markers" data-bind="click: setMarkersVisibility">
                         <span class="fa-stack fa-lg">

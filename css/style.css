@@ -6361,9 +6361,6 @@ nav {
 .input-search {
   min-height: 34px; }
 
-.btn-view {
-  margin: 7px; }
-
 #wikipedia {
   list-style: none; }
 
@@ -6375,6 +6372,19 @@ nav {
   .infoWindow hr {
     margin-top: 10px;
     margin-bottom: 0px; }
+
+.btn-view {
+  margin: 7px; }
+
+.btn-map-group button.btn {
+  padding: 6px 14px; }
+
+/* Place Button Group styling on navbar*/
+.btn-place-group button.btn {
+  padding: 0px;
+  width: 44px;
+  height: 35px !important;
+  font-size: 12px; }
 
 /* Picture street view on info window.*/
 #streetView {
