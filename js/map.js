@@ -7,6 +7,7 @@
  */
 
 var map;
+var wikiRequestTimeout = null;
 /** Functions */
 
 /**
@@ -22,8 +23,8 @@ function initMap() {
         zoom: 13,
         mapTypeControl: false,
         mapTypeControlOptions: {
-            mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain','customStyleMap']
-          }
+            mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain', 'customStyleMap']
+        }
     });
 
     map.mapTypes.set('customStyleMap', customStyledMapType);
@@ -60,7 +61,74 @@ function makeMarkerIcon(markerColor) {
         new google.maps.Size(21, 34)
     )
     return markerImage;
+};
+
+
+wikiRequestTimeout = setTimeout(function () {
+    alert("Failed to load wikipedia resources.");
+    //$wikiElem.text("failed to get wikipedia resources");
+}, 8000);
+
+/** 
+ * Checks and sees if there are wikipedia entries found for the location.
+ * @func getWikipediaEntries
+*/
+function getWikipediaEntries(place) {
+
+    $.ajax({
+        url: "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + place.marker.title + "&text=" + place.city + "&format=json&callback=wikiCallback",
+        dataType: "jsonp",
+    }).done(function (data) {
+
+        console.log(data);
+        var articles = data[1];
+        var items = [];
+
+        var test = "<li><a class='wiki-entry fa fa-wikipedia-w' href='https://en.wikipedia.org/wiki/" + articles[0] + "'>  " + articles[0] + "<a></li>";
+
+        console.log('article' , articles);
+
+        items.push("<li><a class='wiki-entry fa fa-wikipedia-w' href='https://en.wikipedia.org/wiki/" + articles[0] + "'>  " + articles[0] + "<a></li>");
+
+        // for (var i = 0; i < 1; i++) {
+        //     urlString = articles[i].replace(/ /g, "_");
+            
+        // }
+
+        $("#wikipedia").append(items);
+
+        clearTimeout(wikiRequestTimeout);
+    }).fail(function (data) {
+        console.log(data);
+    });
+};
+
+/** 
+ * Get weather entry based on the location.
+ * @func getWeatherEntryForLocation
+*/
+function getWeatherEntryForLocation(place) {
+
+    var url = 'http://api.openweathermap.org/data/2.5/weather?lat=' + place.location.lat + '&lon=' + place.location.lat + '&APPID=c83925a9755f965ddc1faa179431f8ea';
+    $.ajax({
+        url: url,
+        dataType: 'json'
+
+    }).done(function (data) {
+
+        var weather = data.weather[0];
+
+        var icon = '<i class="fa fa-cloud"></i> ';
+
+        $('#weather').append(icon, weather.main);
+        console.log(data.weather[0]);
+
+    }).fail(function (data) {
+        console.log(data);
+    });
 }
+
+
 
 
 /** Google Map Style */

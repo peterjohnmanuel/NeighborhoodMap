@@ -8,11 +8,9 @@ function PlaceViewModel() {
 
     var largerInfoWindow = null;
     var bounds = null;
-    var wikiRequestTimeout = null;
-
+    
     self.places = ko.observableArray(initialPlaceList);
     self.searchPlaces = ko.observable('');
-
 
     self.markersVisible = ko.observable(true);
     self.hotelVisible = ko.observable(true);
@@ -116,7 +114,7 @@ function PlaceViewModel() {
                         place.marker.setVisible(self.beachVisible());
                         return self.beachVisible();
                     }
-                }               
+                }
 
                 /** Check if the view filter has been applied. */
                 if (place.constructor.name === 'View' && self.viewVisible() !== null && place.marker !== null) {
@@ -134,7 +132,7 @@ function PlaceViewModel() {
                 /** Check if the restaurant filter has been applied. */
                 if (place.constructor.name === 'Restaurant' && self.restaurantVisible() !== null && place.marker !== null) {
 
-                    if (self.restaurantVisible()  === true && result == false) {
+                    if (self.restaurantVisible() === true && result == false) {
                         place.marker.setVisible(result);
                         return result;
                     }
@@ -145,10 +143,10 @@ function PlaceViewModel() {
                 }
 
                 /** Code from here is for the initial loading of the view. */
-                 if (place.marker !== null)
-                     place.marker.setVisible(result);
+                if (place.marker !== null)
+                    place.marker.setVisible(result);
 
-                 return result;
+                return result;
             });
         }
     });
@@ -201,22 +199,14 @@ function PlaceViewModel() {
             // position of the streetview image, then calculate the heading, then get a
             // panorama from that and set the options
 
-
             var infoWindowWeatherEntry = '<hr class="hr"><h6 id="weather"></h6>';
 
             getWeatherEntryForLocation(place);
 
-
-            
-
             var infoWindowLayout = '<div class="infoWindow"></div>';
-            var infoWindowHeading = '<h4><i class="fa '+ place.icon +'"></i> ' + place.marker.title + '</h4><hr class="hr">';
+            var infoWindowHeading = '<h4><i class="fa ' + place.icon + '"></i> ' + place.marker.title + '</h4><hr class="hr">';
             var infoWindowStreetView = '<div id="pano"></div>';
             var infoWindowWikipediaEntry = '<div id="wikiEntries"><ul>%data</ul></div>';
-            
-            
-
-
 
             function getStreetView(data, status) {
                 if (status == google.maps.StreetViewStatus.OK) {
@@ -240,15 +230,7 @@ function PlaceViewModel() {
                 }
             }
 
-
-            wikiRequestTimeout = setTimeout(function () {
-                alert("Failed to load wikipedia resources.");
-                //$wikiElem.text("failed to get wikipedia resources");
-            }, 8000);
-
             getWikipediaEntries(place);
-
-            
 
             // Use streetview service to get the closest streetview image within
             // 50 meters of the markers position
@@ -257,7 +239,7 @@ function PlaceViewModel() {
             infoWindow.open(map, place.marker);
         }
 
-    }
+    };
 
 
     /**
@@ -295,7 +277,7 @@ function PlaceViewModel() {
     self.setHotelVisibility = function () {
         self.hotelVisible() === true ? self.hotelVisible(false) : self.hotelVisible(true);
         self.filteredPlaces();
-    }
+    };
 
     /**
      * Set Beach Visibility based on state
@@ -304,7 +286,7 @@ function PlaceViewModel() {
     self.setBeachVisibility = function () {
         self.beachVisible() === true ? self.beachVisible(false) : self.beachVisible(true);
         self.filteredPlaces();
-    }
+    };
 
     /**
      * Set Beach Visibility based on state
@@ -313,7 +295,7 @@ function PlaceViewModel() {
     self.setViewVisibility = function () {
         self.viewVisible() === true ? self.viewVisible(false) : self.viewVisible(true);
         self.filteredPlaces();
-    }
+    };
 
     /**
      * Set Restaurant Visibility based on state
@@ -322,62 +304,6 @@ function PlaceViewModel() {
     self.setRestaurantVisibility = function () {
         self.restaurantVisible() === true ? self.restaurantVisible(false) : self.restaurantVisible(true);
         self.filteredPlaces();
-    }
-
-
-    /** 
-     * Checks and sees if there are wikipedia entries found for the location.
-     * @func getWikipediaEntries
-    */
-    function getWikipediaEntries(place) {
-
-        $.ajax({
-            url: "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + place.marker.title + "&text=" + place.city + "&format=json&callback=wikiCallback",
-            dataType: "jsonp",
-        }).done(function (data) {
-
-            console.log(data);
-            var articles = data[1];
-            var items = []
-            var urlString;
-
-            for (var i = 0; i < 1 ; i++) {
-                urlString = articles[i].replace(/ /g, "_");
-                items.push("<li><a class='wiki-entry fa fa-wikipedia-w' href='https://en.wikipedia.org/wiki/" + articles[i] + "'>  " + articles[i] + "<a></li>");
-            }
-
-            $("#wikipedia").append(items);
-
-            clearTimeout(wikiRequestTimeout);
-        }).fail(function (data) {
-            console.log(data);
-        });
     };
 
-    /** 
-     * Get weather entry based on the location.
-     * @func getWeatherEntryForLocation
-    */
-    function getWeatherEntryForLocation(place){
-
-        var url = 'http://api.openweathermap.org/data/2.5/weather?lat=' + place.location.lat + '&lon=' + place.location.lat + '&APPID=c83925a9755f965ddc1faa179431f8ea';
-        $.ajax({
-            url: url,
-            dataType: 'json'
-
-        }).done(function (data){
-
-            var weather = data.weather[0];
-
-            var icon = '<i class="fa fa-cloud"></i> ';
-
-            $('#weather').append(icon, weather.main);
-            console.log(data.weather[0]);
-
-        }).fail(function (data){
-            console.log(data);
-        });
-
-
-    }
 }
