@@ -8,6 +8,7 @@ function PlaceViewModel() {
 
     var largerInfoWindow = null;
     var bounds = null;
+    var radius = 50;
     
     self.places = ko.observableArray(initialPlaceList);
     self.searchPlaces = ko.observable('');
@@ -194,13 +195,17 @@ function PlaceViewModel() {
             });
 
             var streetViewService = new google.maps.StreetViewService();
-            var radius = 50;
+            
             // In case the status is OK, which means the pano was found, compute the
             // position of the streetview image, then calculate the heading, then get a
             // panorama from that and set the options
 
             var infoWindowWeatherEntry = '<hr class="hr"><h6 id="weather"></h6>';
 
+            /**
+             * External method: map.js
+             * Get the weather for the location 
+             **/
             getWeatherEntryForLocation(place);
 
             var infoWindowLayout = '<div class="infoWindow"></div>';
@@ -230,12 +235,17 @@ function PlaceViewModel() {
                 }
             }
 
+            /** 
+             * External Method: map.js 
+             * Get wikipedia entries              
+             **/
             getWikipediaEntries(place);
 
             // Use streetview service to get the closest streetview image within
             // 50 meters of the markers position
             streetViewService.getPanoramaByLocation(place.marker.position, radius, getStreetView);
-            // Open the infowindow on the correct marker.
+            
+            /** Show the InfoWindow */
             infoWindow.open(map, place.marker);
         }
 

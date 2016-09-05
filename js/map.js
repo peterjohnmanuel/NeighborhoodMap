@@ -126,8 +126,7 @@ function getWeatherEntryForLocation(place) {
     }).fail(function (data) {
         console.log(data);
     });
-}
-
+};
 
 
 
