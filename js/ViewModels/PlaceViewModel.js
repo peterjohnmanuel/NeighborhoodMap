@@ -186,10 +186,13 @@ function PlaceViewModel() {
     self.populateInfoWindow = function (place, infoWindow) {
 
         if (infoWindow.marker != place.marker) {
-
+            
             infoWindow.setContent('');
             infoWindow.marker = place.marker;
 
+            /**
+             * Add close event on InfoWindow.
+             */
             infoWindow.addListener('closeclick', function () {
                 infoWindow.marker = null;
             });
@@ -241,8 +244,8 @@ function PlaceViewModel() {
              **/
             getWikipediaEntries(place);
 
-            // Use streetview service to get the closest streetview image within
-            // 50 meters of the markers position
+
+            /** Get the street view image.*/
             streetViewService.getPanoramaByLocation(place.marker.position, radius, getStreetView);
             
             /** Show the InfoWindow */
