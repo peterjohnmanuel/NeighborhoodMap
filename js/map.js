@@ -7,7 +7,6 @@
  */
 
 var map;
-var wikiRequestTimeout = null;
 /** Functions */
 
 /**
@@ -64,43 +63,48 @@ function makeMarkerIcon(markerColor) {
 };
 
 
-wikiRequestTimeout = setTimeout(function () {
-    alert("Failed to load wikipedia resources.");
-    //$wikiElem.text("failed to get wikipedia resources");
-}, 8000);
-
 /** 
  * Checks and sees if there are wikipedia entries found for the location.
  * @func getWikipediaEntries
 */
 function getWikipediaEntries(place) {
 
+    /** set wikipedia timeout */
+    var wikiRequestTimeout = setTimeout(function () {
+        /**
+         * Todo : Add acceptable message here for error handling.
+         */
+        console.log('Error connect to wikipedia');
+    }, 8000);
+
     $.ajax({
         url: "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + place.marker.title + "&text=" + place.city + "&format=json&callback=wikiCallback",
         dataType: "jsonp",
     }).done(function (data) {
-
-        console.log(data);
+        
+        /** Only get the first entry from wikipedia. */
         var articles = data[1];
-        var items = [];
+        var result;
 
-        var test = "<li><a class='wiki-entry fa fa-wikipedia-w' href='https://en.wikipedia.org/wiki/" + articles[0] + "'>  " + articles[0] + "<a></li>";
+        if (articles.length != 0)
+            var result = "<li><a class='wiki-entry fa fa-wikipedia-w' href='https://en.wikipedia.org/wiki/" + articles[0] + "'>  " + articles[0] + "<a></li>";
+        else
+            var result = "No wikipedia entries found.";
 
-        console.log('article' , articles);
+        $("#wikipedia").append(result);
 
-        items.push("<li><a class='wiki-entry fa fa-wikipedia-w' href='https://en.wikipedia.org/wiki/" + articles[0] + "'>  " + articles[0] + "<a></li>");
-
-        // for (var i = 0; i < 1; i++) {
-        //     urlString = articles[i].replace(/ /g, "_");
-            
-        // }
-
-        $("#wikipedia").append(items);
-
-        clearTimeout(wikiRequestTimeout);
+        
     }).fail(function (data) {
+
+        /**
+         * Todo : Add acceptable message here for error handling.
+         */
         console.log(data);
     });
+
+    /**Clear timeout after call */
+    clearTimeout(wikiRequestTimeout);
+
 };
 
 /** 
