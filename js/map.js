@@ -65,10 +65,7 @@ function getWikipediaEntries(place) {
 
     /** set wikipedia timeout */
     var wikiRequestTimeout = setTimeout(function () {
-        /**
-         * Todo : Add acceptable message here for error handling.
-         */
-        console.log('Error connect to wikipedia');
+        toastr.error('An error occurred getting data from wikipedia.', 'Wikipedia Error');
     }, 8000);
 
     $.ajax({
@@ -89,7 +86,6 @@ function getWikipediaEntries(place) {
 
 
     }).fail(function (data) {
-
         toastr.error('An error occurred getting data from wikipedia.', 'Wikipedia Error');
     });
 
@@ -105,10 +101,7 @@ function getWikipediaEntries(place) {
 function getWeatherEntryForLocation(place) {
 
     var openWeatherRequestTimeout = setTimeout(function () {
-        /**
-         * Todo : Add acceptable message here for error handling.
-         */
-        console.log('Error connecting to open weather map.');
+        toastr.error('An error occurred getting data from open weather map.', 'Open Weather Map Error');
     }, 8000);
 
     var url = 'http://api.openweathermap.org/data/2.5/weather?lat=' + place.location.lat + '&lon=' + place.location.lat + '&APPID=c83925a9755f965ddc1faa179431f8ea';
