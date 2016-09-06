@@ -17,6 +17,16 @@ displayedPlaces.initPlaces();
 
 $(function () {
 
+    /**
+     * toastr options for pop up messages.
+     */
+
+    toastr.options.closeMethod = 'fadeOut';
+    toastr.options.closeDuration = 200;
+    toastr.options.closeEasing = 'swing';
+    toastr.options.showMethod = 'slideDown';
+    toastr.options.closeMethod = 'slideUp';
+
     var body = $('body');
     var navToggleBtn = $('.nav-toggle-btn');
     var navbarTop = $('.navbar-top');

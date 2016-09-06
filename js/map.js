@@ -27,8 +27,6 @@ function initMap() {
     });
 
     map.mapTypes.set('customStyleMap', customStyledMapType);
-    //map.setMapTypeId('customStyleMap');
-
     displayedPlaces.initializeMarkers();
 
 }
@@ -39,11 +37,9 @@ function initMap() {
  */
 function googleMapsError() {
 
-    console.log("Error occurred while loading google maps.");
-
-    //$(".nav-toggle-btn").visible(false);
-
     document.getElementsByClassName("nav-toggle-btn").style.visibility = "hidden";
+
+    toastr.error('Error occurred while loading google maps.', 'Google Maps Error');
 
 }
 
@@ -96,10 +92,7 @@ function getWikipediaEntries(place) {
 
     }).fail(function (data) {
 
-        /**
-         * Todo : Add acceptable message here for error handling.
-         */
-        console.log(data);
+        toastr.error('An error occurred getting data from wikipedia.', 'Wikipedia Error');
     });
 
     /**Clear timeout after call */
@@ -134,11 +127,7 @@ function getWeatherEntryForLocation(place) {
         $('#weather').append(icon, weather.main);
 
     }).fail(function (data) {
-
-        /**
-         * Todo : Add acceptable message here for error handling.
-         */
-        console.log(data);
+        toastr.error('An error occurred getting data from open weather map.', 'Open Weather Map Error');
     });
 
     /**Clear timeout after call */
