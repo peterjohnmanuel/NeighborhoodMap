@@ -87,9 +87,9 @@ function getWikipediaEntries(place) {
         var result;
 
         if (articles.length != 0)
-            var result = "<li><a class='wiki-entry fa fa-wikipedia-w' href='https://en.wikipedia.org/wiki/" + articles[0] + "'>  " + articles[0] + "<a></li>";
+            result = "<li><a class='wiki-entry fa fa-wikipedia-w' href='https://en.wikipedia.org/wiki/" + articles[0] + "'>  " + articles[0] + "<a></li>";
         else
-            var result = "No wikipedia entries found.";
+            result = "No wikipedia entries found.";
 
         $("#wikipedia").append(result);
 

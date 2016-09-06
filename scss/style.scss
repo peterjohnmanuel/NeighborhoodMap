@@ -130,6 +130,7 @@ body {
 
 #wikipedia{
     list-style: none;
+    margin-top: 5px; 
 }
 
 .wiki-entry{
@@ -138,19 +139,14 @@ body {
 }
 
 .infoWindow{
-
     max-width: 250 px;
-
-    hr {
-
-        margin-top: 10px;
-        margin-bottom: 0px;
-    }
-
-    
-
 }
 
+
+hr {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
 
 .btn-view{
     margin: 7px;

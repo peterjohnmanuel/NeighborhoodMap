@@ -9,7 +9,7 @@ function PlaceViewModel() {
     var largerInfoWindow = null;
     var bounds = null;
     var radius = 50;
-    
+
     self.places = ko.observableArray(initialPlaceList);
     self.searchPlaces = ko.observable('');
 
@@ -186,7 +186,7 @@ function PlaceViewModel() {
     self.populateInfoWindow = function (place, infoWindow) {
 
         if (infoWindow.marker != place.marker) {
-            
+
             infoWindow.setContent('');
             infoWindow.marker = place.marker;
 
@@ -198,12 +198,8 @@ function PlaceViewModel() {
             });
 
             var streetViewService = new google.maps.StreetViewService();
-            
-            // In case the status is OK, which means the pano was found, compute the
-            // position of the streetview image, then calculate the heading, then get a
-            // panorama from that and set the options
-
-            var infoWindowWeatherEntry = '<hr class="hr"><h6 id="weather"></h6>';
+           
+            var infoWindowWeatherEntry = '<hr><h6 id="weather"></h6>';
 
             /**
              * External method: map.js
@@ -211,22 +207,27 @@ function PlaceViewModel() {
              **/
             getWeatherEntryForLocation(place);
 
-            var infoWindowLayout = '<div class="infoWindow"></div>';
-            var infoWindowHeading = '<h4><i class="fa ' + place.icon + '"></i> ' + place.marker.title + '</h4><hr class="hr">';
-            var infoWindowStreetView = '<div id="pano"></div>';
-            var infoWindowWikipediaEntry = '<div id="wikiEntries"><ul>%data</ul></div>';
 
+            var infoWindowLayout  = '<div class="infoWindow"><section id="heading">%heading</section></div>';    
+            var infoWindowHeading = '<h4><i class="fa ' + place.icon + '"></i> ' + place.marker.title + '</h4><hr>';
+            var finalInfoWindow = infoWindowLayout.replace('%heading', infoWindowHeading);
+            
+            /**
+             * Create the street view entry if a street view exists.
+             * @func getStreetView
+             */
             function getStreetView(data, status) {
+
                 if (status == google.maps.StreetViewStatus.OK) {
                     var nearStreetViewLocation = data.location.latLng;
                     var heading = google.maps.geometry.spherical.computeHeading(nearStreetViewLocation, place.marker.position);
 
 
-                    infoWindow.setContent('<div>' + infoWindowHeading + '</div><div id="streetView"></div><ul id="wikipedia"></ul><ul id="wikipedia"></ul>' + infoWindowWeatherEntry);
+                    infoWindow.setContent( finalInfoWindow + '<div id="streetView"></div><ul id="wikipedia"></ul><ul id="wikipedia"></ul>' + infoWindowWeatherEntry);
                     var panoramaOptions = {
                         position: nearStreetViewLocation,
                         pov: {
-                            heading: heading,
+                            heading: 34,
                             pitch: 20
                         }
                     };
@@ -234,7 +235,7 @@ function PlaceViewModel() {
                     var panorama = new google.maps.StreetViewPanorama(document.getElementById('streetView'), panoramaOptions);
                 }
                 else {
-                    infoWindow.setContent('<div>' + infoWindowHeading + '</div>' + '<div>No Street View Found</div><ul id="wikipedia"></ul>' + infoWindowWeatherEntry);
+                    infoWindow.setContent(finalInfoWindow + '<div>No Street View Found</div><ul id="wikipedia"></ul>' + infoWindowWeatherEntry);
                 }
             }
 
@@ -244,10 +245,9 @@ function PlaceViewModel() {
              **/
             getWikipediaEntries(place);
 
-
             /** Get the street view image.*/
             streetViewService.getPanoramaByLocation(place.marker.position, radius, getStreetView);
-            
+
             /** Show the InfoWindow */
             infoWindow.open(map, place.marker);
         }

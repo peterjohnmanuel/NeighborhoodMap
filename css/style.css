@@ -6362,16 +6362,18 @@ nav {
   min-height: 34px; }
 
 #wikipedia {
-  list-style: none; }
+  list-style: none;
+  margin-top: 5px; }
 
 .wiki-entry {
   list-style: none; }
 
 .infoWindow {
   max-width: 250 px; }
-  .infoWindow hr {
-    margin-top: 10px;
-    margin-bottom: 0px; }
+
+hr {
+  margin-top: 0px;
+  margin-bottom: 0px; }
 
 .btn-view {
   margin: 7px; }
