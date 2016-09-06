@@ -220,15 +220,15 @@ function PlaceViewModel() {
 
                 if (status == google.maps.StreetViewStatus.OK) {
                     var nearStreetViewLocation = data.location.latLng;
-                    var heading = google.maps.geometry.spherical.computeHeading(nearStreetViewLocation, place.marker.position);
-
+                    var heading = place.heading;
+                    var pitch = place.pitch;
 
                     infoWindow.setContent( finalInfoWindow + '<div id="streetView"></div><ul id="wikipedia"></ul><ul id="wikipedia"></ul>' + infoWindowWeatherEntry);
                     var panoramaOptions = {
                         position: nearStreetViewLocation,
                         pov: {
-                            heading: 34,
-                            pitch: 20
+                            heading: heading,
+                            pitch: pitch
                         }
                     };
 
