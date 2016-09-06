@@ -36,11 +36,9 @@ function initMap() {
  * @func googleMapsError
  */
 function googleMapsError() {
-
-    document.getElementsByClassName("nav-toggle-btn").style.visibility = "hidden";
-
+    
     toastr.error('Error occurred while loading google maps.', 'Google Maps Error');
-
+    document.getElementById('navbar-button').style.visibility = 'hidden';
 }
 
 
