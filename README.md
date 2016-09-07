@@ -8,6 +8,7 @@ Neighborhood Map project details the usage of third party api's and frameworks i
 
 - Download the zip file or clone the [repo](https://github.com/peterjohnmanuel/NeighborhoodMap) to your local machine.
 - Navigate to the folder where you download the file and click on the index.html file.
+- _Recommended:_ Navigate to the dist and click on the index.html file to start the optimizied version.
 
 **Please note**
 
