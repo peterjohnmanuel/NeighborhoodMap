@@ -1,0 +1,116 @@
+/*
+    Navigation for desktop devices above 1200px
+*/
+
+$nav-bar-background-color: #00324c;
+$nav-bar-background-color-hover: #004466;
+$nav-bar-text-color : #ffffff;
+$nav-bar-width : 300px;
+$nav-bar-brand-background: #00547f;
+$nav-bar-brand-color: #ffffff;
+
+
+
+@media only screen and (min-device-width : 1200px)  {
+
+.nav-side {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    bottom: 0;
+    width: $nav-bar-width;
+    background-color: $nav-bar-background-color;
+    transform: translate3d(-$nav-bar-width, 0, 0);
+    transition: transform 0.4s ease;
+    overflow-x: hidden;
+
+    .nav-side-brand{
+        background: $nav-bar-brand-background;
+        color: $nav-bar-brand-color;
+        margin-top: 0px;
+        width: $nav-bar-width;
+        margin-bottom: 5px
+    }
+
+    .nav-side-ul {
+        list-style: none;
+        margin-top: 10px;        
+	
+        li {
+            
+            font-size: 18px;
+            color: $nav-bar-text-color;
+
+            a {
+                text-decoration: none;                
+                text-align: left;
+                color: $nav-bar-text-color;
+                padding: 10px 0;                    
+            }
+
+            i{                 
+                float: right;
+                text-align: right;
+                padding-right: 2px; 
+            }
+            
+
+        }
+
+        li:hover {
+            background-color: $nav-bar-background-color-hover;
+        }
+
+
+    }
+}
+
+.active-nav .nav-side  {
+    transform: translate3d(0, 0, 0);
+    transition: transform 0.4s ease;
+}
+
+ nav {
+     transform: translate3d(0px, 0, 0);
+     transition: transform 0.4s ease;
+ }
+
+.nav-toggle-btn {
+    display: block;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: $nav-bar-background-color;
+    color: $nav-bar-text-color;
+    text-align: center;
+    padding-top: 15px;
+    border: 0px;
+}
+
+.nav-toggle-btn:hover{
+    background-color: $nav-bar-text-color;
+    color: $nav-bar-background-color;
+}    
+
+
+.btn-active-map{
+    background: $nav-bar-brand-background;
+    color: $nav-bar-text-color ;
+}
+
+.content > * {    
+    text-align: center;
+    transition: transform 0.4s ease;
+}
+
+.input-search{
+    min-height: 34px;
+    background: $nav-bar-brand-background;
+    color:  $nav-bar-text-color ;
+}
+
+.active-nav .content {
+    transform: translate3d($nav-bar-width, 0, 0);
+}
+
+}

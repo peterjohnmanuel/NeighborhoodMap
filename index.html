@@ -27,11 +27,11 @@
         <section class="container-fluid">
 
             <div id="mapView" class="btn-group btn-view btn-map-group">
-                <button type="button" class="btn" title="Road Map" data-bind="click: setMapToRoadMap, css: {'btn-primary': roadMapActive(), '': !roadMapActive }"><i class="fa fa-road"></i></button>
-                <button type="button" class="btn" title="Satellite Map" data-bind="click: setMapToSatellite, css: {'btn-primary': satelliteActive(), '': !satelliteActive }"><i class="fa fa-globe"></i></button>
-                <button type="button" class="btn" title="Terrain Map" data-bind="click: setMapToTerrain, css: {'btn-primary': terrainActive(), '': !terrainActive }"><i class="fa fa-area-chart"></i></button>
-                <button type="button" class="btn" title="Hybrid Map" data-bind="click: setMapToHybrid, css: {'btn-primary': hybridActive(), '': !hybridActive }"><i class="fa fa-picture-o"></i></button>
-                <button type="button" class="btn" title="Custom Map" data-bind="click: setCustomMapStyle, css: {'btn-primary': customMapActive(), '': !customMapActive }""><i class="fa fa-magic"></i></button>
+                <button type="button" class="btn" title="Road Map" data-bind="click: setMapToRoadMap, css: {'btn-active-map': roadMapActive(), '': !roadMapActive }"><i class="fa fa-road"></i></button>
+                <button type="button" class="btn" title="Satellite Map" data-bind="click: setMapToSatellite, css: {'btn-active-map': satelliteActive(), '': !satelliteActive }"><i class="fa fa-globe"></i></button>
+                <button type="button" class="btn" title="Terrain Map" data-bind="click: setMapToTerrain, css: {'btn-active-map': terrainActive(), '': !terrainActive }"><i class="fa fa-area-chart"></i></button>
+                <button type="button" class="btn" title="Hybrid Map" data-bind="click: setMapToHybrid, css: {'btn-active-map': hybridActive(), '': !hybridActive }"><i class="fa fa-picture-o"></i></button>
+                <button type="button" class="btn" title="Custom Map" data-bind="click: setCustomMapStyle, css: {'btn-active-map': customMapActive(), '': !customMapActive }""><i class="fa fa-magic"></i></button>
             </div>
 
 
@@ -79,7 +79,7 @@
                     <input type="text" name="txtSearchPlaces" class="form-control" placeholder="Search Places" data-bind="textInput: searchPlaces">
 
                     <span class="input-group-btn">
-                    <button class="btn btn-primary input-search" type="button" disabled>
+                    <button class="btn input-search" type="button" disabled>
                         <i class="fa fa-search"></i>
                     </button>
                 </span>
