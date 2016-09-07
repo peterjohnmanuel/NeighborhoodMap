@@ -10,11 +10,14 @@
 var displayedPlaces = new PlaceViewModel();
 var mapOptions = new MapViewModel();
 
+/** Apply the bindings to relevant views */
 ko.applyBindings(displayedPlaces, document.getElementById('placeView'));
 ko.applyBindings(mapOptions, document.getElementById('mapView'));
 
+/** Initialize the displayedPlaces function */
 displayedPlaces.initPlaces();
 
+/** JQuery functions */
 $(function () {
 
     /**
@@ -27,6 +30,9 @@ $(function () {
     toastr.options.showMethod = 'slideDown';
     toastr.options.closeMethod = 'slideUp';
 
+    /**
+     * variables for menu
+     */
     var body = $('body');
     var navToggleBtn = $('.nav-toggle-btn');
     var navbarTop = $('.navbar-top');

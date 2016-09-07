@@ -21,6 +21,7 @@ var placeMarkers = [
 /**
  * Callback function used when initializing the map and google map api.
  * @func initMap
+ * @callback initMap
  */
 function initMap() {
 

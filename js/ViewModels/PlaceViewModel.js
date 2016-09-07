@@ -1,35 +1,45 @@
 
-/** @func PlaceViewModel 
+/** 
  * View model for Place functionality
+ * @class PlaceViewModel 
 */
 function PlaceViewModel() {
 
     var self = this;
 
+    /** Variables */
     var largerInfoWindow = null;
     var bounds = null;
     var radius = 50;
 
+    /** Knockout observable */
     self.places = ko.observableArray(initialPlaceList);
     self.searchPlaces = ko.observable('');
-
     self.markersVisible = ko.observable(true);
     self.hotelVisible = ko.observable(true);
     self.beachVisible = ko.observable(true);
     self.viewVisible = ko.observable(true);
     self.restaurantVisible = ko.observable(true);
 
+    /** 
+     * Initial method call to sort places 
+     * @func initPlaces
+    */
     self.initPlaces = function () {
         self.sortPlacesByName();
     };
 
+    /**
+     * Initialize the markers 
+     * @func initializeMarkers
+     */
     self.initializeMarkers = function () {
 
         /** Creating a info windows */
         largerInfoWindow = new google.maps.InfoWindow();
         bounds = new google.maps.LatLngBounds();
 
-        /**The following group uses the location array to create an array of markers on initialize.*/
+        /**The following function uses the place array to create markers.*/
         self.places().forEach(function (place) {
 
 
@@ -154,6 +164,7 @@ function PlaceViewModel() {
     /**
      * Marker Mouse Over Event
      * @func markerMouseOver
+     * @param place
      */
     self.markerMouseOver = function (place) {
         var highlightedIcon = makeMarkerIcon(place, '#FFFF24');
@@ -163,6 +174,7 @@ function PlaceViewModel() {
     /**
      * Marker Mouse Out Event
      * @func markerMouseOut
+     * @param place
      */
     self.markerMouseOut = function (place) {
         var defaultIcon = makeMarkerIcon(place, '#0091ff');
@@ -172,6 +184,7 @@ function PlaceViewModel() {
     /**
      * Show the selected place's' infoWindow
      * @func showPlaceInfoWindow
+     * @param place
      */
     self.showPlaceInfoWindow = function (place) {
         self.populateInfoWindow(place, largerInfoWindow);
@@ -181,6 +194,8 @@ function PlaceViewModel() {
     /**
      * Populate the info window on click
      * @func populateInfoWindow
+     * @param place
+     * @param infoWindow
      */
     self.populateInfoWindow = function (place, infoWindow) {
 
