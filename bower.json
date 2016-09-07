@@ -34,8 +34,11 @@
         "knockout.min.js": "dist/knockout.js"
       },
       "toastr": {
-        "toastr.min.js" : "toastr.min.js",
-        "toastr.css" : "toastr.css"
+        "toastr.min.js": "toastr.min.js",
+        "toastr.css": "toastr.css"
+      },
+      "fontawesome-markers": {
+        "fontawesome-markers" : "fontawesome-markers.min.js"
       }
     }
   },
@@ -44,6 +47,7 @@
     "font-awesome": "^4.6.3",
     "jQuery": "^3.1.0",
     "knockout": "knockoutjs#^3.4.0",
-    "toastr": "^2.1.3"
+    "toastr": "^2.1.3",
+    "fontawesome-markers": "^4.6.1"
   }
 }

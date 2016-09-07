@@ -7,10 +7,19 @@
  */
 
 var map;
+
+var placeMarkers = [
+    fontawesome.markers.EXCLAMATION_CIRCLE,
+    fontawesome.markers.UMBRELLA,
+    fontawesome.markers.CUTLERY,
+    fontawesome.markers.HOTEL,
+    fontawesome.markers.STREET_VIEW
+];
+
 /** Functions */
 
 /**
- * Callback function used when initializing the map.
+ * Callback function used when initializing the map and google map api.
  * @func initMap
  */
 function initMap() {
@@ -36,30 +45,52 @@ function initMap() {
  * @func googleMapsError
  */
 function googleMapsError() {
-    
+
     toastr.error('Error occurred while loading google maps.', 'Google Maps Error');
     document.getElementById('navbar-button').style.visibility = 'hidden';
 }
 
 
-/** This function takes in a COLOR, and then creates a new marker icon of theat color.
- * The icon will be 21 px wide by 24 high, have an origin of 0, 0 and be anchored at 10,34
+/**
+ * Create an icon based on the place 
+ * 
+ * @func makeMarkerIcon
+ * @param place
+ * @param markerColor
  */
-function makeMarkerIcon(markerColor) {
-    var markerImage = new google.maps.MarkerImage(
-        'http://chart.googleapis.com/chart?chst=d_map_spin&chld=1.15|0|' + markerColor + '|40|_|%E2%80%A2',
-        new google.maps.Size(34, 34),
-        new google.maps.Point(0, 0),
-        new google.maps.Point(10, 34),
-        new google.maps.Size(21, 34)
-    )
-    return markerImage;
+function makeMarkerIcon(place, markerColor) {
+
+    var placeIcon;
+
+    switch (place.constructor.name) {
+        case 'Hotel': placeIcon = 3;
+            break;
+        case 'Beach': placeIcon = 1;
+            break;
+        case 'View': placeIcon = 4;
+            break;
+        case 'Restaurant': placeIcon = 2;
+            break;
+    }
+
+    var icon = {
+        path: placeMarkers[placeIcon],
+        scale: 0.3,
+        strokeWeight: 0.2,
+        strokeColor: 'black',
+        strokeOpacity: 1,
+        fillColor: markerColor,
+        fillOpacity: 0.7
+    };
+
+    return icon;
 };
 
 
 /** 
  * Checks and sees if there are wikipedia entries found for the location.
  * @func getWikipediaEntries
+ * @param place
 */
 function getWikipediaEntries(place) {
 
@@ -97,6 +128,7 @@ function getWikipediaEntries(place) {
 /** 
  * Get weather entry based on the location.
  * @func getWeatherEntryForLocation
+ * @param place
 */
 function getWeatherEntryForLocation(place) {
 

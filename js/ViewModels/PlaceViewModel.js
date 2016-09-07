@@ -29,21 +29,20 @@ function PlaceViewModel() {
         largerInfoWindow = new google.maps.InfoWindow();
         bounds = new google.maps.LatLngBounds();
 
-        /** Style the markers a bit. This will be our listing marker icon. */
-        var defaultIcon = makeMarkerIcon('0091ff');
-
-        /**Create a "highlighted" location marker color for when the use mouses over the marker */
-        var highlightedIcon = makeMarkerIcon('FFFF24');
-
         /**The following group uses the location array to create an array of markers on initialize.*/
         self.places().forEach(function (place) {
 
+
+            var defaultIcon = makeMarkerIcon(place, '#0091ff');
+            var highlightedIcon = makeMarkerIcon(place, '#ffff24');
+            
             place.marker = new google.maps.Marker({
                 map: map,
                 position: place.location,
                 title: place.title,
                 animation: google.maps.Animation.DROP,
                 icon: defaultIcon
+
             });
 
             /** Create an onclick event to open an infowindow at each marker */
@@ -157,7 +156,7 @@ function PlaceViewModel() {
      * @func markerMouseOver
      */
     self.markerMouseOver = function (place) {
-        var highlightedIcon = makeMarkerIcon('FFFF24');
+        var highlightedIcon = makeMarkerIcon(place, '#FFFF24');
         place.marker.setIcon(highlightedIcon);
     };
 
@@ -166,7 +165,7 @@ function PlaceViewModel() {
      * @func markerMouseOut
      */
     self.markerMouseOut = function (place) {
-        var defaultIcon = makeMarkerIcon('0091ff');
+        var defaultIcon = makeMarkerIcon(place, '#0091ff');
         place.marker.setIcon(defaultIcon);
     };
 
@@ -198,7 +197,7 @@ function PlaceViewModel() {
             });
 
             var streetViewService = new google.maps.StreetViewService();
-           
+
             var infoWindowWeatherEntry = '<hr><h6 id="weather"></h6>';
 
             /**
@@ -208,10 +207,10 @@ function PlaceViewModel() {
             getWeatherEntryForLocation(place);
 
 
-            var infoWindowLayout  = '<div class="infoWindow"><section id="heading">%heading</section></div>';    
+            var infoWindowLayout = '<div class="infoWindow"><section id="heading">%heading</section></div>';
             var infoWindowHeading = '<h4><i class="fa ' + place.icon + '"></i> ' + place.marker.title + '</h4><hr>';
             var finalInfoWindow = infoWindowLayout.replace('%heading', infoWindowHeading);
-            
+
             /**
              * Create the street view entry if a street view exists.
              * @func getStreetView
@@ -223,7 +222,7 @@ function PlaceViewModel() {
                     var heading = place.heading;
                     var pitch = place.pitch;
 
-                    infoWindow.setContent( finalInfoWindow + '<div id="streetView"></div><ul id="wikipedia"></ul><ul id="wikipedia"></ul>' + infoWindowWeatherEntry);
+                    infoWindow.setContent(finalInfoWindow + '<div id="streetView"></div><ul id="wikipedia"></ul><ul id="wikipedia"></ul>' + infoWindowWeatherEntry);
                     var panoramaOptions = {
                         position: nearStreetViewLocation,
                         pov: {
