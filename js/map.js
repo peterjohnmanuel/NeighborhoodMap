@@ -113,7 +113,7 @@ function getWikipediaEntries(place) {
         var articles = data[1];
         var result;
 
-        if (articles.length != 0)
+        if (articles.length !== 0)
             result = "<li><a class='wiki-entry fa fa-wikipedia-w' href='https://en.wikipedia.org/wiki/" + articles[0] + "'>  " + articles[0] + "<a></li>";
         else
             result = "No wikipedia entries found.";

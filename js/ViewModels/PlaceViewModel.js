@@ -62,7 +62,7 @@ function PlaceViewModel() {
 
             /** Change marker color on mouseover */
             place.marker.addListener('mouseover', function () {
-                this.setIcon(highlightedIcon)
+                this.setIcon(highlightedIcon);
             });
 
             /** Change marker color on mouseout */
@@ -103,7 +103,7 @@ function PlaceViewModel() {
                 /** Check if the hotel filter has been applied. */
                 if (place.constructor.name === 'Hotel' && self.hotelVisible() !== null && place.marker !== null) {
 
-                    if (self.hotelVisible() === true && result == false) {
+                    if (self.hotelVisible() === true && result === false) {
                         place.marker.setVisible(result);
                         return result;
                     }
@@ -116,7 +116,7 @@ function PlaceViewModel() {
                 /** Check if the beach filter has been applied. */
                 if (place.constructor.name === 'Beach' && self.beachVisible() !== null && place.marker !== null) {
 
-                    if (self.beachVisible() === true && result == false) {
+                    if (self.beachVisible() === true && result === false) {
                         place.marker.setVisible(result);
                         return result;
                     }
@@ -129,7 +129,7 @@ function PlaceViewModel() {
                 /** Check if the view filter has been applied. */
                 if (place.constructor.name === 'View' && self.viewVisible() !== null && place.marker !== null) {
 
-                    if (self.viewVisible() === true && result == false) {
+                    if (self.viewVisible() === true && result === false) {
                         place.marker.setVisible(result);
                         return result;
                     }
@@ -142,7 +142,7 @@ function PlaceViewModel() {
                 /** Check if the restaurant filter has been applied. */
                 if (place.constructor.name === 'Restaurant' && self.restaurantVisible() !== null && place.marker !== null) {
 
-                    if (self.restaurantVisible() === true && result == false) {
+                    if (self.restaurantVisible() === true && result === false) {
                         place.marker.setVisible(result);
                         return result;
                     }
