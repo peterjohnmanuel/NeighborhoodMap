@@ -162,45 +162,45 @@ function getWeatherEntryForLocation(place) {
 
 
 /** Google Map Style */
-var customMapStyle = [{
-    featureType: 'water',
-    stylers: [{ color: '#19a0d8' }]
-},
-    {
-        featureType: 'administrative',
-        elementType: 'labels.text.stroke',
-        stylers: [
-            { color: '#ffffff' },
-            { weight: 1 }
-        ]
-    },
-    {
-        featureType: 'administrative',
-        elementType: 'labels.text.file',
-        stylers: [
-            { color: '#e85113' },
-        ]
-    },
-    {
-        featureType: 'road.highway',
-        elementType: 'geometry.stroke',
-        stylers: [
-            { color: '#efe9e4' },
-            { lightness: -40 },
-        ]
-    },
-    {
-        featureType: 'transit.station',
-        stylers: [
-            { weight: 9 },
-            { hue: '#e85113' },
-        ]
-    },
-    {
-        featureType: 'road.highway',
-        elementType: 'labels.icon',
-        stylers: [
-            { visibility: 'off' }
-        ]
-    }
+
+var customMapStyle = [
+  {
+    "featureType": "water",
+    "elementType": "geometry.fill",
+    "stylers": [
+      { "visibility": "on" },
+      { "invert_lightness": true },
+      { "color": "#2F74D0" }
+    ]
+  },{
+    "featureType": "water",
+    "elementType": "labels.text",
+    "stylers": [
+      { "visibility": "on" },
+      { "color": "#ffffff" }
+    ]
+  },{
+    "featureType": "administrative",
+    "elementType": "labels.text.stroke",
+    "stylers": [
+      { "visibility": "on" },
+      { "color": "#ffffff" },
+      { "weight": 1 }
+    ]
+  },{
+    "featureType": "administrative",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      { "visibility": "on" },
+      { "color": "#1F88A7" }
+    ]
+  },{
+    "featureType": "poi.park",
+    "elementType": "geometry.fill",
+    "stylers": [
+      { "visibility": "on" },
+      { "color": "#6CA870" }
+    ]
+  },{
+    "featureType": "landscape.natural"  }
 ]
