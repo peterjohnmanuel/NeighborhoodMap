@@ -8,6 +8,7 @@
 
 var map;
 
+/** Fontawesome markers used in map */
 var placeMarkers = [
     fontawesome.markers.EXCLAMATION_CIRCLE,
     fontawesome.markers.UMBRELLA,
@@ -16,6 +17,7 @@ var placeMarkers = [
     fontawesome.markers.STREET_VIEW
 ];
 
+/** Map colours in solution */
 var mapIconColour = { 
     defaultIconColor: '#FF800D',  highlightedIconColor: '#ffff24'
 };
@@ -81,11 +83,11 @@ function makeMarkerIcon(place, markerColor) {
     var icon = {
         path: placeMarkers[placeIcon],
         scale: 0.3,
-        strokeWeight: 0.2,
-        strokeColor: 'black',
+        strokeWeight: 0.5,
+        strokeColor: '#ffffff',
         strokeOpacity: 1,
         fillColor: markerColor,
-        fillOpacity: 0.7
+        fillOpacity: 0.8
     };
 
     return icon;
