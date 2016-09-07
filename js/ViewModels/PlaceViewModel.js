@@ -43,8 +43,8 @@ function PlaceViewModel() {
         self.places().forEach(function (place) {
 
 
-            var defaultIcon = makeMarkerIcon(place, '#0091ff');
-            var highlightedIcon = makeMarkerIcon(place, '#ffff24');
+            var defaultIcon = makeMarkerIcon(place, mapIconColour.defaultIconColor);
+            var highlightedIcon = makeMarkerIcon(place,  mapIconColour.highlightedIconColor);
             
             place.marker = new google.maps.Marker({
                 map: map,
@@ -167,7 +167,7 @@ function PlaceViewModel() {
      * @param place
      */
     self.markerMouseOver = function (place) {
-        var highlightedIcon = makeMarkerIcon(place, '#FFFF24');
+        var highlightedIcon = makeMarkerIcon(place, mapIconColour.highlightedIconColor);
         place.marker.setIcon(highlightedIcon);
     };
 
@@ -177,7 +177,7 @@ function PlaceViewModel() {
      * @param place
      */
     self.markerMouseOut = function (place) {
-        var defaultIcon = makeMarkerIcon(place, '#0091ff');
+        var defaultIcon = makeMarkerIcon(place, mapIconColour.defaultIconColor);
         place.marker.setIcon(defaultIcon);
     };
 

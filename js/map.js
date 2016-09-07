@@ -16,6 +16,10 @@ var placeMarkers = [
     fontawesome.markers.STREET_VIEW
 ];
 
+var mapIconColour = { 
+    defaultIconColor: '#FF800D',  highlightedIconColor: '#ffff24'
+};
+
 /** Functions */
 
 /**
